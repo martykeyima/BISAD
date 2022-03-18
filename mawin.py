@@ -4,4 +4,4 @@ com = 10
 m= 12
 com + m
 mawin = "Kung"
-pear = 19
+pear = 3
