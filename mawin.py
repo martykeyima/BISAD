@@ -4,3 +4,4 @@ com = 10
 m= 12
 com +m
 mawin = "Kung"
+# com เอ๋อๆ
