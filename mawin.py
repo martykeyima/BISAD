@@ -5,4 +5,4 @@ m= 12
 com + m
 mawin = "Kung"
 pear = 3
-ning = 20
+ning = 100
