@@ -109,7 +109,7 @@ function renderProduct(product) {
     })
 
     //if admin
-    if (idu != 'jZqjU5vQ8QeJzhYEPjEC') {
+    if (idu != '5vzP4VuX6LxmWeF5zBlY') {
         del.setAttribute('style', 'display:none;');
         i.setAttribute('style', 'display:none;');
         addp.setAttribute('style', 'display:none;');
