@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="products.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
+
+    <style>
+        .container {
+            width: 930px;
+            margin: 0 auto;
+        }
+
+        .card {
+            position: relative;
+        }
+
+        .del {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            cursor: pointer;
+            padding: .25rem .5rem;
+            background-color: indianred;
+            color: white;
+        }
+
+        .fas {
+            position: absolute;
+            top: 0px;
+            right: 20px;
+            cursor: pointer;
+            padding: .25rem .5rem;
+            /* background-color: indianred; */
+            /* color: white; */
+        }
+
+        .price_span {
+            padding: .25rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: .85rem;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h5 {
+            font-size: .85rem;
+        }
+
+        .buy {
+            position: relative;
+            left: 50px;
+        }
+
+        .basket {
+            position: relative;
+            left: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <br><br>
+        <h1>Product</h1>
+        <br>
+
+        <div class="row" id="row">
+        </div>
+        <br>
+
+        <!-- <button id="password">Addproduct</button> -->
+        <!-- Button trigger modal -->
+        <button id ='addp' type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add New Product
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form id="password">
+
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="password" placeholder="ใส่รหัส">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- <img src="it.png" alt=""> -->
+        <!-- <i class="fas fa-pencil-alt"></i> -->
+    </div>
+
+
+</body>
+
+</html>
