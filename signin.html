@@ -15,14 +15,48 @@
         crossorigin="anonymous"></script>
 
     <style>
-        .container {
-            width: 800px;
-            margin: 0 auto;
+        body {
+            background-color: #D9C4BF;
         }
 
-        .content {
-            border-radius: 0.5rem;
-            border: indianred 1px;
+        .container {
+            margin: auto;
+            width: 800px;
+            padding: 10px;
+        }
+
+        #box {
+            border: 1px #A6938F;
+            padding: 2rem 3.5rem;
+            border-radius: 2rem;
+            background-color: #A6938F;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .btn {
+            position: relative;
+            background-color: #5a5857;
+            color: white;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            width: 8rem;
+        }
+
+        .sign {
+            left: 25%;
+        }
+
+        .up {
+            left: 35%;
+        }
+
+        .form-control {
+            border-radius: 1rem;
+            height: 3.5rem;
         }
     </style>
 </head>
@@ -31,21 +65,25 @@
 
     <div class="container">
         <br><br>
-        <h1>IT Shop</h1>
         <br><br>
-        <form id="signin">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" placeholder="add username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="add password" name="password" required>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Sign-in</button>
-            <a class="btn btn-primary" href="signup.html">Sign-up</a>
-        </form>
+        <div id="box">
+            <h1>IT Shop</h1>
+            <form id="signin">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+
+                <button type="submit" class="btn sign">Sign-in</button>
+                <a class="btn up" href="signup.html">Sign-up</a>
+            </form>
+        </div>
+
     </div>
 
 </body>
