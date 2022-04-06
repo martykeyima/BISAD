@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Firebase Commy</title>
+
+    <script src="index.js" type="module"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script> -->
+
+    <style>
+        .container {
+            max-width: 960px;
+            margin: 0 auto; /*ทำให้อยู่ตรงกลาง*/
+        }
+
+        ul {
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        li {
+            position: relative;
+        }
+
+        .del {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: indianred;
+            padding: .5rem 1rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        p:nth-child(1) {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p:nth-child(2) {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="div">
+        <h1>Learn Commy</h1>
+
+        <form id="addUser">
+            <input type="text" name="name"  id="name" placeholder="Add your name">
+            <button type="submit">Add</button>
+        </form>
+
+        <ul id="userList">
+            
+        </ul>
+    </div>
+</body>
+
+</html>

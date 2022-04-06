@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basket</title>
+    <script src="basket.js" type="module"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #f0e4e4;
+        }
+
+        .container {
+            width: 930px;
+            margin: 0 auto;
+        }
+
+        .col2 {
+            /* position: relative; */
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 45%;
+            width: 50%;
+            font-size: 1rem;
+        }
+
+        .card-price {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .fa-trash-alt {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+
+        .card {
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment {
+            padding: 40px 5px;
+            border-radius: 1rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            width: 60%;
+            position: relative;
+            /* left: 51%; */
+        }
+
+        #p-payment {
+            text-align: center;
+            font-size: 1.75rem;
+        }
+
+        .btn1 {
+            position: relative;
+            border-radius: .5rem;
+            background-color: white;
+            border: white;
+            background-color: orange;
+            padding: 5px 10px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.25rem;
+
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <br><br>
+        <h1>รายการสินค้า</h1>
+        <br>
+
+        <div class="row" id="row">
+        </div>
+        <br><br>
+
+        <div class="d-flex justify-content-end">
+            <div class="payment">
+                <p id="p-payment"></p>
+                <button id="btn1" class="btn1 d-flex justify-content-center"
+                    onclick="window.location.href='payment.html'">ชำระเงิน</button>
+            </div>
+        </div>
+        <br><br>
+
+
+    </div>
+
+
+
+</body>
+
+</html>

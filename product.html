@@ -22,14 +22,37 @@
     <script src="products.js" type="module"></script>
     <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
 
+    <!-- mawin -->
+
+
     <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0e4e4;
+        }
+
         .container {
-            width: 930px;
+            width: 1000px;
             margin: 0 auto;
         }
 
         .card {
+            /* padding: 1rem; */
             position: relative;
+            background-color: #D9C4BF;
+            color: #5a5857;
+            /* border-bottom-left-radius: 10px; */
+            /* border-bottom-right-radius: 10px; */
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-title {
+            text-align: center;
+            color: black;
         }
 
         .del {
@@ -44,10 +67,11 @@
 
         .fas {
             position: absolute;
-            top: 0px;
-            right: 20px;
+            top: 5px;
+            right: 25px;
             cursor: pointer;
             padding: .25rem .5rem;
+            color: #A6938F;
             /* background-color: indianred; */
             /* color: white; */
         }
@@ -57,11 +81,12 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            font-size: .85rem;
+            font-size: .95rem;
         }
 
         h1 {
             text-align: center;
+            color: #3E5923;
         }
 
         h5 {
@@ -71,31 +96,52 @@
         .buy {
             position: relative;
             left: 50px;
+            background-color: #5a5857;
+            color: #f0e4e4;
+            border-radius: 2rem;
         }
 
         .basket {
             position: relative;
             left: 100px;
+            background-color: #5a5857;
+            color: #f0e4e4;
+            border-radius: 2rem;
+
         }
 
+        #addp {
+            color: #f0e4e4;
+            background-color: #3E5923;
+            padding: 1rem 1rem;
+            width: 15rem;
+            border-radius: 5rem;
+            font-size: 20px;
+        }
     </style>
 </head>
 
 <body>
+    <div id="includedContent"></div>
     <div class="container" id="container">
         <br><br>
         <h1>Product</h1>
         <br>
+        <div>
 
-        <div class="row" id="row">
+            <div class="row d-flex justify-content-between" id="row">
+            </div>
         </div>
-        <br>
+        <br><br>
 
         <!-- <button id="password">Addproduct</button> -->
         <!-- Button trigger modal -->
-        <button id ='addp' type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Add New Product
-        </button>
+        <div class="d-flex justify-content-center">
+            <button id='addp' type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                Add New Product
+            </button>
+        </div>
+        <br><br>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

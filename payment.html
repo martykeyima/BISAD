@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment</title>
+    <script src="payment.js" type="module"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0e4e4;
+        }
+
+        .container {
+            width: 50rem;
+            margin: 0 auto;
+        }
+
+        .form-control {
+            border-radius: 1rem;
+            height: 3.5rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .address {
+            height: 7rem;
+        }
+
+        .slip {
+            background-color: white;
+            padding: 40px;
+            border-radius: 1rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pay {
+            padding: 40px 5px;
+            border-radius: 1rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            width: 60%;
+            position: relative;
+
+        }
+
+        #p-price {
+            text-align: center;
+            font-size: 1.75rem;
+        }
+
+        .btn {
+            position: relative;
+            border-radius: .5rem;
+            background-color: white;
+            border: white;
+            background-color: orange;
+            padding: 5px 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* margin-left: auto; */
+            /* margin-right: auto; */
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <br><br>
+        <h1>Payment</h1>
+        <br>
+        <form id="payment">
+            <div class="mb-3">
+                <label for="name" class="form-label">ชื่อ</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">ที่อยู่</label>
+                <textarea type="text" class="form-control address" name="address" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">เบอร์โทร</label>
+                <input type="text" class="form-control" name="phone" required>
+            </div>
+
+
+
+            <label for="slip" class="form-label">สลิปโอนเงิน</label>
+            <div class="mb-3 slip d-flex justify-content-center">
+                <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
+                    onchange="previewFile()" required>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <div class="pay d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <p id="p-price"></p>
+                        <button type="submit" class="btn">ชำระเงิน</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </form>
+
+        <script>
+
+
+            function previewFile() {
+                console.log('commy')
+                var file = document.querySelector('input[type=file]').files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function () {
+                    // console.log(reader.result)
+                    // const lll = reader.result;
+                    sessionStorage.setItem("src", reader.result);
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    console.log('pear')
+                }
+
+
+            }
+        </script>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
