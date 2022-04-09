@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>approve</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,7 +19,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <script src="test.js" type="module"></script>
+    <script src="approve.js" type="module"></script>
     <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
 
     <!-- mawin -->
@@ -39,28 +39,29 @@
             width: 1000px;
             margin: 0 auto;
         }
+
+        ul {
+            padding: 40px;
+            border-radius: 1rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            width: 80%;
+            position: relative;
+        }
     </style>
 </head>
 
 <body>
     <div id="includedContent"></div>
     <div class="container" id="container">
-        <form id="form">
+        <br><br>
+        <h1>approve</h1>
+        <br>
 
-            <div class="form-group">
-                <label>Example select</label>
-                <select class="form-control" name="commy">
-
-                    <option value="wait">รอการอนุมัติ</option>
-                    <option style="width: 50%;">2</option>
-                    <option>3</option>
-                    <option value="pear">4</option>
-                    <option>5</option>
-                </select>
-                <input type="text" class="form-control"name="logisv">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <ul id="ul">
+        </ul>
+        
+        <br>
     </div>
 
 

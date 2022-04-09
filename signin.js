@@ -44,7 +44,7 @@ form.addEventListener('submit', async (e) => {
         const q = query(users, where("username", '==', username));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(doc => {
-            const n = renderUser(doc, username, password);
+            renderUser(doc, username, password);
         })
     } catch (error) {
         throw error

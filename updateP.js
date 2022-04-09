@@ -32,14 +32,16 @@ function renderProduct(product) {
     // update ข้อมูลใหม่เมื่อกด submit
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
-        
+
         const washingtonRef = doc(db, "products", idp);
         await updateDoc(washingtonRef, {
-            src : form.src.value,
-            name : form.name.value,
-            price : form.price.value,
-            detail : form.detail.value,
+            src: form.src.value,
+            name: form.name.value,
+            price: form.price.value,
+            detail: form.detail.value,
         })
+
+        window.location.href = "product.html";
     })
 }
 

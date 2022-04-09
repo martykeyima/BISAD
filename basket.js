@@ -93,7 +93,7 @@ function renderProduct(product) {
     //del
     i.addEventListener('click', async (e) => {
         let id = e.target.parentElement.getAttribute('databody-id');
-        console.log(id);
+        console.log('id', id);
         // await deleteDoc(doc(db, "products", id));
         const index = lis1.indexOf(id);
         if (index > -1) {
@@ -106,6 +106,7 @@ function renderProduct(product) {
         await updateDoc(washingtonRef, {
             productlis : lis1
         })
+        location.reload();
 
 
 

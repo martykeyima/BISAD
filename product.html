@@ -118,6 +118,25 @@
             border-radius: 5rem;
             font-size: 20px;
         }
+        #search {
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: none;
+            outline:none;
+            margin-left: 5px;
+            width: 100%;
+            font-size: 15px;
+        }
+        .psearch {
+            border-radius: 20px;
+            background-color: white;
+            width: 500px;
+            padding: 5px 10px;
+        }
+        .psearch:hover {
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 
@@ -127,10 +146,17 @@
         <br><br>
         <h1>Product</h1>
         <br>
-        <div>
 
-            <div class="row d-flex justify-content-between" id="row">
+        <div class="d-flex justify-content-center">
+            <div class="psearch  d-flex align-items-center">
+                <i style="color: rgb(217, 201, 201);" class="fa fa-search" aria-hidden="true"></i>
+                <input id="search" type="search">
             </div>
+        </div>
+
+        <br>
+        <div>
+            <div class="row" id="row"></div>
         </div>
         <br><br>
 
@@ -143,7 +169,7 @@
         </div>
         <br><br>
 
-        <!-- Modal -->
+        <!-- Modal
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -169,7 +195,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <img src="it.png" alt=""> -->
         <!-- <i class="fas fa-pencil-alt"></i> -->
     </div>

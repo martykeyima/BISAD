@@ -57,7 +57,9 @@ function renderUser(user) {
             phone: form.phone.value,
             slip: form.slip.value,
             src: src,
-            total : raka
+            total : raka,
+            status : 'wait',
+            productlis : lis1
         })
 
         lis1 = []
@@ -71,6 +73,8 @@ function renderUser(user) {
         await updateDoc(washingtonRef, {
             productlis : null
         })
+
+        window.location.href = "history.html";
     })
 
 

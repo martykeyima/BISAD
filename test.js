@@ -12,24 +12,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const div = document.getElementById('container')
+const form = document.getElementById('form');
 
-function renderProduct(product) {
-    const img = document.createElement('img');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log((form.commy.value))
+})
 
-    img.setAttribute('src', product.data().src)
+// function renderProduct(product) {
+//     const img = document.createElement('img');
 
-    div.appendChild(img)
-}
+//     img.setAttribute('src', product.data().src)
+
+//     div.appendChild(img)
+// }
 
 
 // read
-try {
-    const products = collection(db, "history");
-    const q = query(products);
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(doc => {
-        renderProduct(doc);
-    })
-} catch (error) {
-    throw error
+// try {
+//     const products = collection(db, "history");
+//     const q = query(products);
+//     const querySnapshot = await getDocs(q);
+//     querySnapshot.forEach(doc => {
+//         renderProduct(doc);
+//     })
+// } catch (error) {
+//     throw error
+// }
+
+const object = { a: 1, b: 2, c: 3 };
+
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
 }

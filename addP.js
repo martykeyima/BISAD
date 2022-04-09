@@ -12,8 +12,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-var idu = sessionStorage.getItem("idu");
-console.log('idu', idu);
+// var idu = sessionStorage.getItem("idu");
+// console.log('idu', idu);
 
 
 let form = document.getElementById("addP")

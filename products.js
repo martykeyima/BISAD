@@ -43,7 +43,7 @@ querySnapshot.forEach(doc => {
 var lis3 = sessionStorage.getItem("lis2");
 console.log('lis3', (lis3))
 const lis1 = lis3.split(',');
-console.log('lis1',lis1)
+console.log('lis1', lis1)
 
 
 function renderProduct(product) {
@@ -82,7 +82,7 @@ function renderProduct(product) {
     buy.innerText = "buy";
     basket.innerText = "basket";
 
-    div.setAttribute("style", "width: 19rem;");
+    div.setAttribute("style", "width: 19rem; height: 29rem;");
     img.setAttribute("src", product.data().src);
 
 
@@ -111,9 +111,10 @@ function renderProduct(product) {
 
     //del
     del.addEventListener('click', async (e) => {
-        let id = e.target.parentElement.getAttribute('data-id');
+        let id = e.target.parentElement.getAttribute('dataid');
         console.log(id);
         await deleteDoc(doc(db, "products", id));
+        location.reload();
 
     });
 
@@ -149,11 +150,14 @@ function renderProduct(product) {
     })
 
     //if admin
-    if (idu != '5vzP4VuX6LxmWeF5zBlY') {
+    if (['5vzP4VuX6LxmWeF5zBlY', 'EW0xFyQdDlvyXZe6vthz', 'EW0xFyQdDlvyXZe6vthz', 'aJ153G9WP0dYq0sxUrNl', 'oUwzDtY1WMEvJGdAsH2K', 'yjR1SZjB62doWuKzg2I6'].includes(idu)) {
+        console.log('welcome admin')
+    } else {
         del.setAttribute('style', 'display:none;');
         i.setAttribute('style', 'display:none;');
         addp.setAttribute('style', 'display:none;');
     }
+
 }
 
 // read
@@ -168,21 +172,26 @@ try {
     throw error
 }
 
-// password
-const formp = document.getElementById("password");
-try {
-    formp.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const ppp = formp.password.value;
-        if (ppp == "commy") {
-            window.location.href = "addP.html";
-        }
-        else {
-            alert("wrong password")
-        }
-        formp.password.value = "";
-    });
-} catch (error) {
-    throw error
-}
+//goto aff product
+addp.addEventListener('click' , async(e) => {
+    window.location.href = "addP.html";
+})
 
+
+//search bar
+const search = document.getElementById('search');
+const col = document.getElementsByClassName('col-4');
+const title = document.getElementsByClassName('card-title');
+console.log('title',title[0]);
+
+search.addEventListener('input', async(e) => {
+    console.log(e.target.value.toLowerCase())
+    const txt = e.target.value.toLowerCase();
+    for (let i = 0; i < title.length; i++) {
+        if (title[i].innerText.toLowerCase().includes(txt)) {
+            col[i].style.display = 'block';
+        } else {
+            col[i].style.display = "none";
+        }
+      }
+})
