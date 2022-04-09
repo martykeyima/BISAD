@@ -39,38 +39,36 @@
             /* width: 1000px; */
             margin: 0 auto;
         }
-        .table {
-            background-color: white;
-            border-radius: 10px;
+        .card {
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            position: relative;
         }
+        .statusdiv {
+            position: absolute;
+            left: 75%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .wait2{
+            position: absolute;
+            left: 75%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+
     </style>
 </head>
 
 <body>
     <div class="container" id="container">
         <br><br>
-        <h1>history</h1>
+        <h1>My Orders</h1>
         <br>
-        <table class="table">
-            <thead>
-                <tr class="bg-danger">
-                    <th scope="col">date</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody id="tbody">
-                <tr>
-                    <th>1</th>
-                    <td>commy</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
-        </table>
+        
     </div>
 
 

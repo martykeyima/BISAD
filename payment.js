@@ -25,12 +25,41 @@ var lis1 = sessionStorage.getItem("lis1");
 lis1 = lis1.split(',');
 console.log('lis1', lis1);
 
+const productsrc = [];
+const productname = [];
+const productprice = [];
+
+function renderProducts(product) {
+    productsrc.push(product.data().src)
+    console.log('productsrc', productsrc)
+
+    productname.push(product.data().name)
+    console.log('productname', productname)
+
+    productprice.push(product.data().price);
+    console.log('productprice', productprice)
+}
+
+
+for (let i = 0; i < lis1.length; i++) {
+    // read
+    try {
+        const products = collection(db, "products");
+        const q = query(products, where('idp', '==', lis1[i]));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(doc => {
+            renderProducts(doc);
+        })
+    } catch (error) {
+        throw error
+    }
+}
 //tranform number to number with comma
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
     while (pattern.test(x))
-    x = x.replace(pattern, "$1,$2");
+        x = x.replace(pattern, "$1,$2");
     return x;
 }
 
@@ -57,21 +86,26 @@ function renderUser(user) {
             phone: form.phone.value,
             slip: form.slip.value,
             src: src,
-            total : raka,
-            status : 'wait',
-            productlis : lis1
+            total: raka,
+            status: 'wait',
+            productlis: lis1,
+            productsrc : productsrc,
+            productname : productname,
+            productprice : productprice
         })
 
         lis1 = []
         src = ''
+        raka = 0
         sessionStorage.setItem("lis1", lis1);
+        sessionStorage.setItem("raka", raka);
         console.log('src', src);
         console.log('lis1', lis1)
 
         //update basket
         const washingtonRef = doc(db, "users", idu);
         await updateDoc(washingtonRef, {
-            productlis : null
+            productlis: null
         })
 
         window.location.href = "history.html";

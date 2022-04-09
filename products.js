@@ -67,6 +67,7 @@ function renderProduct(product) {
     div.className = "card";
     img.className = "card-img-top";
     dib.className = "card-body";
+    // dib.setAttribute('class','card-body bg-danger')
     h5.className = "card-title";
     del.className = "del";
     span.className = "price_span";
@@ -82,8 +83,9 @@ function renderProduct(product) {
     buy.innerText = "buy";
     basket.innerText = "basket";
 
-    div.setAttribute("style", "width: 19rem; height: 29rem;");
+    // div.setAttribute("style", "width: 100% height: 29rem;");
     img.setAttribute("src", product.data().src);
+    img.setAttribute("style", "width: 100%;");
 
 
 

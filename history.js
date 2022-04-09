@@ -14,51 +14,131 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+var idu = sessionStorage.getItem("idu");
+console.log('idu', idu);
 
-const tbody = document.getElementById('tbody');
+const parent = document.getElementById('container');
+
+//tranform number to number with comma
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
 
 
 function renderHistory(his) {
-    const tr = document.createElement('tr');
+    const row1 = document.createElement('div');
+    row1.setAttribute('class', 'row card');
 
-    const th = document.createElement('th');
-    const td1 = document.createElement('td');
-    const td2 = document.createElement('td');
-    const td3 = document.createElement('td');
+    const productsrc = his.data().productsrc;
+    const productname = his.data().productname;
+    const productprice = his.data().productprice;
+    const lis = [];
 
-    th.innerText = his.data().name;
+    for (let i = 0; i < productsrc.length; i++) {
+        if (lis.includes(productsrc[i])) {
+            console.log("pass")
+        }
+        else {
+            lis.push(productsrc[i])
 
-    const occurrences = his.data().productlis.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
+            const row = document.createElement('div');
+            const col1 = document.createElement('div');
+            const col2 = document.createElement('div');
+            const col3 = document.createElement('div');
+            const col4 = document.createElement('div');
+            const col5 = document.createElement('div');
 
-    // console.log(occurrences) // => {2: 5, 4: 1, 5: 3, 9: 1}
+            row.className = 'row'
+            col1.className = 'col'
+            col2.className = 'col'
+            col3.className = 'col'
+            col4.className = 'col'
+            col5.className = 'col'
 
-    for (const property in occurrences) {
-        // console.log(`${property}: ${occurrences[property]}`);
-        // property = src
-        // ${occurrences[property]} = จำนวน
-        
+            const img = document.createElement('img');
+            img.setAttribute('src', productsrc[i]);
+            img.setAttribute('style', 'width:200px;');
+
+            const name = document.createElement('p');
+            name.setAttribute('style', 'margin-top: 40px;')
+            name.innerText = productname[i];
+
+            const price = document.createElement('p')
+            price.setAttribute('style', 'margin-top: 40px;')
+            price.innerText = `฿${numberWithCommas(productprice[i])}`;
+
+            const qty = document.createElement('p');
+            qty.setAttribute('style', 'margin-top: 40px;')
+
+            //count value
+            const counts = {};
+            for (const num of productsrc) {
+                counts[num] = counts[num] ? counts[num] + 1 : 1;
+            }
+            //count value
+            qty.innerText = `QTY: ${counts[productsrc[i]]}`
+
+            const status = document.createElement('p');
+            status.innerText = ''
+
+            col1.appendChild(img)
+            col2.appendChild(name)
+            col3.appendChild(price)
+            col4.appendChild(qty)
+            col5.appendChild(status)
+
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            row.appendChild(col4);
+            row.appendChild(col5);
+
+            row1.appendChild(row);
+        }
+    }
+    if (his.data().status == 'wait') {
+        const status1 = document.createElement('p');
+        status1.className = 'wait2'
+        status1.innerText = 'กำลังตรวจสอบสลิปโอนเงิน'
+        row1.appendChild(status1)
+    } else if (his.data().status == 'ผ่าน') {
+        const div1 = document.createElement('div');
+        const status1 = document.createElement('p');
+        const status2 = document.createElement('p');
+        status1.innerText = `ขนส่งโดย: ${his.data().logis}`
+        status2.innerText = `รหัสขนส่ง: ${his.data().logisv}`
+        status2.setAttribute('style','width: 250px;')
+        div1.appendChild(status1)
+        div1.appendChild(status2)
+        div1.className = 'statusdiv'
+        row1.appendChild(div1)
+    } else {
+        const div1 = document.createElement('div');
+        const status1 = document.createElement('p');
+        const status2 = document.createElement('p');
+        status1.innerText = `ไม่ผ่านการอนุมัติ`
+        status2.innerText = `${his.data().approvev}`
+        div1.appendChild(status1)
+        div1.appendChild(status2)
+        div1.className = 'statusdiv'
+        row1.appendChild(div1);
     }
 
-    tr.appendChild(th);
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-
-    tbody.appendChild(tr);
+    parent.appendChild(row1)
 }
-
 
 // read
 try {
     const history = collection(db, "history");
-    const q = query(history);
+    const q = query(history, where('idu', '==', idu));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderHistory(doc);
-    })  
+    })
 } catch (error) {
     throw error
 }
-
