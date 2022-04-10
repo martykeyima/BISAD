@@ -47,7 +47,10 @@
             border-radius: 15px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            height: 450px;
+            height: 470px;
+            margin-bottom: 35px;
+            transform: translateY(0px);
+            transition: all 0.3s;
         }
 
         .card-body {
@@ -98,21 +101,25 @@
             font-size: .85rem;
         }
 
+
         .buy {
-            position: relative;
+            position: absolute;
+            width: 70px;
             left: 50px;
+            bottom: 35px;
             background-color: #5a5857;
             color: #f0e4e4;
             border-radius: 2rem;
         }
 
         .basket {
-            position: relative;
-            left: 100px;
+            position: absolute;
+            width: 70px;
+            bottom: 35px;
+            right: 50px;
             background-color: #5a5857;
             color: #f0e4e4;
             border-radius: 2rem;
-
         }
 
         #addp {
@@ -139,13 +146,19 @@
             background-color: white;
             width: 500px;
             padding: 5px 10px;
+            margin-bottom: 20px;
         }
 
         .psearch:hover {
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
         }
 
-        
+
+        .card:hover {
+            transform: translateY(-20px);
+            transition: all 0.7s;
+            z-index: 99;
+        }
     </style>
 </head>
 

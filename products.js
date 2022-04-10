@@ -63,6 +63,7 @@ function renderProduct(product) {
 
     div.setAttribute("data-id", product.id);
     dib.setAttribute("databody-id", product.id);
+    h5.setAttribute('style', 'cursor: pointer;')
 
     div.className = "card";
     img.className = "card-img-top";
@@ -85,7 +86,7 @@ function renderProduct(product) {
 
     // div.setAttribute("style", "width: 100% height: 29rem;");
     img.setAttribute("src", product.data().src);
-    img.setAttribute("style", "width: 100%;");
+    img.setAttribute("style", "width: 100%;cursor: pointer;");
 
 
 
@@ -113,7 +114,7 @@ function renderProduct(product) {
 
     //del
     del.addEventListener('click', async (e) => {
-        let id = e.target.parentElement.getAttribute('dataid');
+        let id = e.target.parentElement.getAttribute('data-id');
         console.log(id);
         await deleteDoc(doc(db, "products", id));
         location.reload();
@@ -147,7 +148,7 @@ function renderProduct(product) {
         await updateDoc(washingtonRef, {
             productlis: lis1
         })
-        
+
         sessionStorage.setItem("lis1", lis1);
         window.location.href = "basket.html";
     })
