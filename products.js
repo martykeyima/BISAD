@@ -45,6 +45,10 @@ console.log('lis3', (lis3))
 const lis1 = lis3.split(',');
 console.log('lis1', lis1)
 
+const qty_auto = document.getElementById('qty_auto');
+if (lis1.length - 1 > 0) {
+    qty_auto.innerText = `เตือนว่าในตะกร้ามีกี่ชิ้น ${lis1.length - 1}`
+}
 
 function renderProduct(product) {
     let div = document.createElement('div');
@@ -136,6 +140,12 @@ function renderProduct(product) {
         let id = e.target.parentElement.getAttribute('databody-id');
         lis1.push(id);
         console.log('lis1', lis1);
+        qty_auto.innerText = `เตือนว่าในตะกร้ามีกี่ชิ้น ${lis1.length - 1}`
+
+        const washingtonRef = doc(db, "users", idu);
+        await updateDoc(washingtonRef, {
+            productlis: lis1
+        })
     })
 
     //buy
