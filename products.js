@@ -134,7 +134,7 @@ function renderProduct(product) {
         e.preventDefault();
         let id = e.target.parentElement.getAttribute('databody-id');
         lis1.push(id);
-        console.log(lis1);
+        console.log('lis1', lis1);
     })
 
     //buy
@@ -147,8 +147,37 @@ function renderProduct(product) {
         await updateDoc(washingtonRef, {
             productlis: lis1
         })
+        
         sessionStorage.setItem("lis1", lis1);
         window.location.href = "basket.html";
+    })
+
+    //card to detail
+    img.addEventListener('click', async (e) => {
+        const id = e.target.parentElement.getAttribute('data-id')
+        console.log('id', id)
+
+        const washingtonRef = doc(db, "users", idu);
+        await updateDoc(washingtonRef, {
+            productlis: lis1
+        })
+        sessionStorage.setItem("lis1", lis1);
+        sessionStorage.setItem("idp", id);
+        window.location.href = "detail.html";
+    })
+
+    //title to detail
+    h5.addEventListener('click', async (e) => {
+        const id = e.target.parentElement.getAttribute('databody-id')
+        console.log('id', id)
+
+        const washingtonRef = doc(db, "users", idu);
+        await updateDoc(washingtonRef, {
+            productlis: lis1
+        })
+        sessionStorage.setItem("lis1", lis1);
+        sessionStorage.setItem("idp", id);
+        window.location.href = "detail.html";
     })
 
     //if admin
@@ -161,6 +190,7 @@ function renderProduct(product) {
     }
 
 }
+console.log('lis1', lis1);
 
 // read
 try {
@@ -175,7 +205,7 @@ try {
 }
 
 //goto aff product
-addp.addEventListener('click' , async(e) => {
+addp.addEventListener('click', async (e) => {
     window.location.href = "addP.html";
 })
 
@@ -184,9 +214,9 @@ addp.addEventListener('click' , async(e) => {
 const search = document.getElementById('search');
 const col = document.getElementsByClassName('col-4');
 const title = document.getElementsByClassName('card-title');
-console.log('title',title[0]);
+// console.log('title', title[0]); 
 
-search.addEventListener('input', async(e) => {
+search.addEventListener('input', async (e) => {
     console.log(e.target.value.toLowerCase())
     const txt = e.target.value.toLowerCase();
     for (let i = 0; i < title.length; i++) {
@@ -195,5 +225,5 @@ search.addEventListener('input', async(e) => {
         } else {
             col[i].style.display = "none";
         }
-      }
+    }
 })

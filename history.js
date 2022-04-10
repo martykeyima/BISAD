@@ -33,6 +33,7 @@ function renderHistory(his) {
     const row1 = document.createElement('div');
     row1.setAttribute('class', 'row card');
 
+    const productid = his.data().productlis;
     const productsrc = his.data().productsrc;
     const productname = his.data().productname;
     const productprice = his.data().productprice;
@@ -60,10 +61,12 @@ function renderHistory(his) {
             col5.className = 'col'
 
             const img = document.createElement('img');
+            img.className = 'detail'
             img.setAttribute('src', productsrc[i]);
             img.setAttribute('style', 'width:200px;');
 
             const name = document.createElement('p');
+            name.className = 'detail'
             name.setAttribute('style', 'margin-top: 40px;')
             name.innerText = productname[i];
 
@@ -86,7 +89,9 @@ function renderHistory(his) {
             status.innerText = ''
 
             col1.appendChild(img)
+            col1.setAttribute('data-id', productid[i + 1]);
             col2.appendChild(name)
+            col2.setAttribute('data-id', productid[i + 1])
             col3.appendChild(price)
             col4.appendChild(qty)
             col5.appendChild(status)
@@ -98,7 +103,20 @@ function renderHistory(his) {
             row.appendChild(col5);
 
             row1.appendChild(row);
+
+            img.addEventListener('click', async (e) => {
+                let id = e.target.parentElement.getAttribute('data-id');
+                sessionStorage.setItem("idp", id);
+                window.location.href = "detail.html";
+            })
+
+            name.addEventListener('click', async (e) => {
+                let id = e.target.parentElement.getAttribute('data-id');
+                sessionStorage.setItem("idp", id);
+                window.location.href = "detail.html";
+            })
         }
+
     }
     if (his.data().status == 'wait') {
         const status1 = document.createElement('p');
@@ -111,7 +129,7 @@ function renderHistory(his) {
         const status2 = document.createElement('p');
         status1.innerText = `ขนส่งโดย: ${his.data().logis}`
         status2.innerText = `รหัสขนส่ง: ${his.data().logisv}`
-        status2.setAttribute('style','width: 250px;')
+        status2.setAttribute('style', 'width: 250px;')
         div1.appendChild(status1)
         div1.appendChild(status2)
         div1.className = 'statusdiv'
@@ -129,6 +147,7 @@ function renderHistory(his) {
     }
 
     parent.appendChild(row1)
+    
 }
 
 // read

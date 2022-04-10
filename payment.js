@@ -101,7 +101,7 @@ function renderUser(user) {
         sessionStorage.setItem("raka", raka);
         console.log('src', src);
         console.log('lis1', lis1)
-
+        
         //update basket
         const washingtonRef = doc(db, "users", idu);
         await updateDoc(washingtonRef, {
