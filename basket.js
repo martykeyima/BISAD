@@ -21,7 +21,9 @@ lis1 = lis1.split(',');
 console.log('lis1', lis1);
 
 const row = document.getElementById('row');
-const lisp = [];
+const lisprice = [];
+const lisproduct = [];
+
 const ppayment = document.getElementById('p-payment')
 
 
@@ -35,83 +37,195 @@ function numberWithCommas(x) {
 }
 
 //read product
-function renderProduct(product) {
+function renderProduct(product, count) {
 
-    let card = document.createElement('div');
-    let src = document.createElement('img');
-    let cardbody = document.createElement('div');
-    let h5 = document.createElement('h5');
-    let price = document.createElement('h5');
-    let row1 = document.createElement('div');
-    let col1 = document.createElement('div');
-    let col2 = document.createElement('div');
-    let i = document.createElement('i');
+    lisprice.push(parseInt(product.data().price))
 
-    let p1 = document.createElement('p');
-    let p2 = document.createElement('p');
+    if (lisproduct.includes(lis1[count])) {
+        console.log('commy')
+    } else {
+        console.log('pear')
+        lisproduct.push(lis1[count])
 
-    card.setAttribute('data-id', product.id);
-    cardbody.setAttribute('databody-id', product.id);
-    card.setAttribute('style', 'width: 100rem;');
-    src.setAttribute('src', product.data().src);
+        console.log(count)
+        let card = document.createElement('div');
+        let src = document.createElement('img');
+        let cardbody = document.createElement('div');
+        let h5 = document.createElement('h5');
+        let price = document.createElement('h5');
+        let row1 = document.createElement('div');
+        let col1 = document.createElement('div');
+        let col2 = document.createElement('div');
+        let i = document.createElement('i');
 
-    row1.className = 'row';
-    col1.className = 'col-4';
-    col2.className = 'col-8';
+        let p1 = document.createElement('p');
+        let p2 = document.createElement('p');
 
+        card.setAttribute('data-id', product.id);
+        cardbody.setAttribute('databody-id', product.id);
+        card.setAttribute('style', 'width: 100rem;');
+        src.setAttribute('src', product.data().src);
 
-    card.className = "card";
-    src.className = "card-img-top";
-    cardbody.className = "card-body";
-    h5.className = "card-title";
-    price.className = "card-price";
-    i.className = "fas fa-trash-alt";
-
-    h5.innerText = product.data().name;
-    price.innerText = numberWithCommas(product.data().price);
-
-    cardbody.appendChild(h5);
-    cardbody.appendChild(price);
-    cardbody.appendChild(i);
+        row1.className = 'row';
+        col1.className = 'col-4';
+        col2.className = 'col-8';
 
 
-    col1.appendChild(src)
-    col2.appendChild(cardbody)
+        card.className = "card";
+        src.className = "card-img-top";
+        cardbody.className = "card-body";
+        h5.className = "card-title";
+        price.className = "card-price";
+        i.className = "fas fa-trash-alt";
 
-    row1.appendChild(col1)
-    row1.appendChild(col2)
+        h5.innerText = product.data().name;
+        price.innerText = `฿${numberWithCommas(parseInt(product.data().price) * lis1.filter(x => x == product.id).length)}`
 
-    // card.appendChild(src)
-    // card.appendChild(cardbody)
-    card.appendChild(row1)
+        // สร้างปุ่มเพิ่มลด
+        const div1 = document.createElement('div');
+        div1.setAttribute('class', 'parentplusminus d-flex justify-content-end')
 
-    row.appendChild(card)
-    row.appendChild(p1)
-    row.appendChild(p2)
-    lisp.push(parseInt(product.data().price))
+        const div2 = document.createElement('div');
+        div2.setAttribute('class', 'd-flex align-items-center')
+        div2.setAttribute('data-id', `${product.id}`)
 
-    //del
-    i.addEventListener('click', async (e) => {
-        let id = e.target.parentElement.getAttribute('databody-id');
-        console.log('id', id);
-        // await deleteDoc(doc(db, "products", id));
-        const index = lis1.indexOf(id);
-        if (index > -1) {
-            lis1.splice(index, 1); // 2nd parameter means remove one item only
-        }
-        console.log(lis1)
-        sessionStorage.setItem("lis1", lis1);
+        const span1 = document.createElement('span')
+        span1.setAttribute('class', 'update minus paragraph')
+        span1.setAttribute('data-id', `${product.id}`)
+        span1.setAttribute('id', 'minus')
+        const i1 = document.createElement('i')
+        i1.setAttribute('class', 'fas fa-minus')
+        span1.appendChild(i1)
 
-        const washingtonRef = doc(db, "users", idu);
-        await updateDoc(washingtonRef, {
-            productlis : lis1
-        })
-        location.reload();
+        const input = document.createElement('input')
+        input.setAttribute('class', `qty ${product.id}`)
+        input.setAttribute('id', product.id)
+        input.setAttribute('type', 'number')
+        input.setAttribute('value', `${lis1.filter(x => x == product.id).length}`)
+        input.setAttribute('min', '0')
+
+        const span2 = document.createElement('span')
+        span2.setAttribute('data-id', `${product.id}`)
+        span2.setAttribute('class', 'update plus paragraph')
+        span2.setAttribute('id', 'plus')
+        const i2 = document.createElement('i')
+        i2.setAttribute('class', 'fas fa-plus')
+        span2.appendChild(i2)
+
+        div2.appendChild(span1)
+        div2.appendChild(input)
+        div2.appendChild(span2)
+
+        div1.appendChild(div2)
+        // สร้างปุ่มเพิ่มลด
+
+        cardbody.appendChild(h5);
+        cardbody.appendChild(div1)
+        cardbody.appendChild(price);
+        cardbody.appendChild(i);
+
+
+        col1.appendChild(src)
+        col2.appendChild(cardbody)
+
+        row1.appendChild(col1)
+        row1.appendChild(col2)
+
+        // card.appendChild(src)
+        // card.appendChild(cardbody)
+        card.appendChild(row1)
+
+        row.appendChild(card)
+        row.appendChild(p1)
+        row.appendChild(p2)
+
+        //del
+        i.addEventListener('click', async (e) => {
+            let id = e.target.parentElement.getAttribute('databody-id');
+            console.log('id', id);
+            // await deleteDoc(doc(db, "products", id));
+            const delnum = lis1.filter(x => x == id).length
+            const index = lis1.indexOf(id);
+            if (index > -1) {
+                lis1.splice(index, delnum); // 2nd parameter means remove one item only
+            }
+            console.log(lis1)
+            sessionStorage.setItem("lis1", lis1);
+
+            const washingtonRef = doc(db, "users", idu);
+            await updateDoc(washingtonRef, {
+                productlis: lis1
+            })
+            location.reload();
 
 
 
-    });
+        });
 
+        // minus
+        span1.addEventListener('click', async (e) => {
+            const qty = document.getElementById(e.target.parentElement.getAttribute('data-id'))
+            console.log(qty)
+            if (parseInt(qty.value) - 1 < 1) {
+                qty.value = 1
+            } else {
+                qty.value = parseInt(qty.value) - 1
+                price.innerText = `฿${numberWithCommas(parseInt(product.data().price) * qty.value)}`
+                const index = lis1.indexOf(e.target.parentElement.getAttribute('data-id'));
+                console.log(index)
+                if (index > -1) {
+                    lis1.splice(index, 1); // 2nd parameter means remove one item only
+                }
+                console.log(lis1)
+                sessionStorage.setItem("lis1", lis1);
+
+                const washingtonRef = doc(db, "users", idu);
+                await updateDoc(washingtonRef, {
+                    productlis: lis1
+                })
+                const indexp = lisprice.indexOf(parseInt(product.data().price))
+                if (index > -1) {
+                    lisprice.splice(indexp, 1); // 2nd parameter means remove one item only
+                }
+                const raka = lisprice.reduce((a, b) => a + b, 0)
+                console.log('ราคา', raka)
+                ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
+                sessionStorage.setItem("raka", raka);
+            }
+
+            if (qty.value == 1) {
+                span1.setAttribute('style', 'cursor: not-allowed;')
+            }
+        });
+
+        //plus
+        span2.addEventListener('click', async (e) => {
+            const qty = document.getElementById(e.target.parentElement.getAttribute('data-id'))
+            console.log(qty)
+
+            qty.value = parseInt(qty.value) + 1
+            span1.setAttribute('style', 'cursor: pointer;')
+            price.innerText = `฿${numberWithCommas(parseInt(product.data().price) * qty.value)}`
+
+            lis1.push(e.target.parentElement.getAttribute('data-id'))
+            sessionStorage.setItem("lis1", lis1);
+            const washingtonRef = doc(db, "users", idu);
+            await updateDoc(washingtonRef, {
+                productlis: lis1
+            })
+
+            lisprice.push(parseInt(product.data().price))
+            const raka = lisprice.reduce((a, b) => a + b, 0)
+            console.log('ราคา', raka)
+            ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
+            sessionStorage.setItem("raka", raka);
+
+        });
+        // i1.addEventListener('click', async (e) =>{
+        //     const qty = document.getElementById(e.target.parentElement.getAttribute('data-id'))
+        //     console.log(qty)
+        // });
+    }
 
 }
 
@@ -123,13 +237,13 @@ for (let i = 0; i < lis1.length; i++) {
         const q = query(products, where('idp', '==', lis1[i]));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(doc => {
-            renderProduct(doc);
+            renderProduct(doc, i);
         })
     } catch (error) {
         throw error
     }
 }
-const raka = lisp.reduce((a, b) => a + b, 0)
+const raka = lisprice.reduce((a, b) => a + b, 0)
 console.log('ราคา', raka)
 ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
 sessionStorage.setItem("raka", raka);

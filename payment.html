@@ -33,8 +33,8 @@
         }
 
         body {
-            background-color: #F08080;
-            /* background-color: #f0e4e4; */
+            background: rgb(204, 203, 249);
+            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
         }
 
         .container {
@@ -82,24 +82,41 @@
             padding: 5px 10px;
             left: 50%;
             transform: translateX(-50%);
-            /* margin-left: auto; */
-            /* margin-right: auto; */
             font-size: 1.25rem;
+            background-color: #033A3A;
+            color: white;
+            transition: all 0.3s;
         }
-        /* .back-form {
-            margin: 0 auto;
-            background-color: #f0e4e4;
-            background-color: #F08080;
-            padding: 1rem 2rem;
+
+        .btn:hover {
+            background-color: #1c6969;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .img {
+            /* background-color: #4a2886; */
+            width: 16rem;
+        }
+
+        .card1 {
+            background-color: white;
             border-radius: 1rem;
-        } */
+            overflow: hidden;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .title {
+            margin-top: 15px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container" id="container">
         <br><br>
-        <h1>Payment</h1>
+        <!-- <h1>Payment</h1> -->
         <br>
         <div class="back-form">
 
@@ -108,25 +125,58 @@
                     <label for="name" class="form-label">ชื่อ</label>
                     <input type="text" class="form-control" name="name" required>
                 </div>
-    
+
                 <div class="mb-3">
                     <label for="address" class="form-label">ที่อยู่</label>
                     <textarea type="text" class="form-control address" name="address" required></textarea>
                 </div>
-    
+
                 <div class="mb-3">
                     <label for="phone" class="form-label">เบอร์โทร</label>
                     <input type="text" class="form-control" name="phone" required>
                 </div>
-    
-    
-    
+
+
+                <div>
+                    <img src="" alt="" id="output_shoppic" style="max-width: 200px;">
+                </div>
                 <label for="slip" class="form-label">สลิปโอนเงิน</label>
                 <div class="mb-3 slip d-flex justify-content-center">
                     <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
-                        onchange="previewFile()" required>
+                        onchange="previewFile(event)" required>
                 </div>
                 <br><br>
+                <div class="d-flex justify-content-between">
+                    <div class="card1" style="width: 200px;">
+                        <div class="img">
+                            <img src="https://i.pinimg.com/564x/a1/51/d5/a151d5cebcc12274a19f2e84067bf72b.jpg"
+                                style="max-width: 200px;" alt="">
+                        </div>
+                        <h5 class="title" style="text-align: center;">4093230040</h5>
+                        <!-- <hr> -->
+                        <h5 style="text-align: center;">นาย นวิน เวชสุวรรณ์</h5>
+                    </div>
+                    <div class="card1" style="width: 200px;">
+                        <div class="img">
+                            <img src="https://i.pinimg.com/564x/a1/51/d5/a151d5cebcc12274a19f2e84067bf72b.jpg"
+                                style="max-width: 200px; " alt="">
+                        </div>
+                        <h5 class="title" style="text-align: center;">4093230040</h5>
+                        <!-- <hr> -->
+                        <h5 style="text-align: center;">นาย นวิน เวชสุวรรณ์</h5>
+                    </div>
+                    <div class="card1" style="width: 200px;">
+                        <div class="img">
+                            <img src="https://i.pinimg.com/564x/a1/51/d5/a151d5cebcc12274a19f2e84067bf72b.jpg"
+                                style="max-width: 200px;" alt="">
+                        </div>
+                        <h5 class="title" style="text-align: center;">4093230040</h5>
+                        <!-- <hr> -->
+                        <h5 style="text-align: center;">นาย นวิน เวชสุวรรณ์</h5>
+                    </div>
+                </div>
+                <br>
+
                 <div class="d-flex justify-content-end">
                     <div class="pay d-flex justify-content-center">
                         <div class="align-self-center">
@@ -143,7 +193,7 @@
         <script>
 
 
-            function previewFile() {
+            function previewFile(event) {
                 // console.log('commy')
                 var file = document.querySelector('input[type=file]').files[0];
                 var reader = new FileReader();
@@ -157,6 +207,15 @@
                     reader.readAsDataURL(file);
                 } else {
                     console.log('pear')
+                }
+
+                var preview = document.getElementById("output_shoppic");
+                if (event.target.files.length > 0) {
+                    var src = URL.createObjectURL(event.target.files[0]);
+                    preview.src = src;
+                    preview.style.display = "block";
+                } else if (event.target.files.length == 0) {
+                    preview.style.display = "none";
                 }
 
 
