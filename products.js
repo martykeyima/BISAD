@@ -68,6 +68,7 @@ function renderProduct(product) {
     div.setAttribute("data-id", product.id);
     dib.setAttribute("databody-id", product.id);
     h5.setAttribute('style', 'cursor: pointer;')
+    h5.setAttribute('title', product.data().name)
 
     div.className = "card";
     img.className = "card-img-top";
@@ -84,17 +85,20 @@ function renderProduct(product) {
     h5.innerText = product.data().name;
     del.innerText = "X";
     // const x = numberWithCommas(product.data().price);
-    span.innerText = `Price ${numberWithCommas(product.data().price)}`;
+    span.innerText = `฿${numberWithCommas(product.data().price)}`;
     buy.innerText = "buy";
     basket.innerText = "basket";
 
     // div.setAttribute("style", "width: 100% height: 29rem;");
     img.setAttribute("src", product.data().src);
     img.setAttribute("style", "width: 100%;cursor: pointer;");
+    img.setAttribute("title", product.data().name);
+    // title="click here"
 
 
 
     dib.appendChild(h5);
+    // dib.appendChild(span);
     dib.appendChild(buy);
     dib.appendChild(basket);
     dib.appendChild(p1);
@@ -206,7 +210,7 @@ console.log('lis1', lis1);
 // read
 try {
     const products = collection(db, "products");
-    const q = query(products);
+    const q = query(products, orderBy('name'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderProduct(doc);
@@ -224,7 +228,9 @@ addp.addEventListener('click', async (e) => {
 //search bar
 const search = document.getElementById('search');
 const col = document.getElementsByClassName('col-4');
+const price = document.getElementsByClassName('price_span');
 const title = document.getElementsByClassName('card-title');
+console.log('price', price[0].innerText)
 // console.log('title', title[0]); 
 
 search.addEventListener('input', async (e) => {
@@ -238,3 +244,30 @@ search.addEventListener('input', async (e) => {
         }
     }
 })
+
+// scale
+const
+  range = document.getElementById('range'),
+  rangeV = document.getElementById('rangeV'),
+  setValue = ()=>{
+    const
+      newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
+      newPosition = 10 - (newValue * 0.2);
+    rangeV.innerHTML = `<span>${numberWithCommas(range.value)}</span>`;
+    rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+  };
+document.addEventListener("DOMContentLoaded", setValue);
+range.addEventListener('input', setValue);
+range.addEventListener('input', async (e) => {
+    const filprice = parseInt(e.target.value);
+    for (let i = 0; i < title.length; i++) {
+        const num = price[i].innerText.replace('฿','')
+        const com = num.replace(',','')
+        if (parseInt(com) <= filprice) {
+            col[i].style.display = 'block';
+        } else {
+            col[i].style.display = 'none';
+        }
+    }
+    
+});

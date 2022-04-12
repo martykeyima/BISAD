@@ -32,18 +32,18 @@
         }
 
         body {
-            background-color: #f0e4e4;
+            background: rgb(204, 203, 249);
+            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
         }
 
         .container {
             width: 1000px;
-            margin: 0 auto;
+            margin-left: 400px;
+            /* margin: 0 auto; */
         }
 
         .card {
             position: relative;
-            background-color: #D9C4BF;
-            color: #5a5857;
             border-radius: 15px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -51,15 +51,10 @@
             margin-bottom: 35px;
             transform: translateY(0px);
             transition: all 0.3s;
-        }
-
-        .card-body {
-            background-color: #D9C4BF;
-            color: white;
+            height: 500px;
         }
 
         .card-title {
-            text-align: center;
             color: black;
         }
 
@@ -73,6 +68,10 @@
             color: white;
         }
 
+        .del:hover {
+            background-color: rgb(182, 72, 72);
+        }
+
         .fas {
             position: absolute;
             top: 5px;
@@ -84,12 +83,22 @@
             /* color: white; */
         }
 
+        .fas:hover {
+            color: #7a5f59;
+        }
+
+        .card-body {
+            position: relative;
+        }
+
         .price_span {
-            padding: .25rem;
+            font-size: 20px;
             position: absolute;
-            bottom: 0;
-            right: 0;
-            font-size: .95rem;
+            right: 30px;
+            bottom: 90px;
+            font-weight: bold;
+            /* color: #c66162; */
+            color: #D95252;
         }
 
         h1 {
@@ -101,14 +110,14 @@
             font-size: .85rem;
         }
 
-
         .buy {
             position: absolute;
             width: 70px;
             left: 50px;
             bottom: 35px;
-            background-color: #5a5857;
-            color: #f0e4e4;
+            /* background-color: #5a5857; */
+            background-color: #033A3A;
+            color: white;
             border-radius: 2rem;
         }
 
@@ -116,10 +125,15 @@
             position: absolute;
             width: 70px;
             bottom: 35px;
-            right: 50px;
-            background-color: #5a5857;
-            color: #f0e4e4;
+            right: 55px;
+            background-color: #033A3A;
+            /* background-color: #5a5857; */
+            color: white;
             border-radius: 2rem;
+        }
+
+        .btn:hover {
+            background-color: #1c6969;
         }
 
         #addp {
@@ -139,6 +153,7 @@
             margin-left: 5px;
             width: 100%;
             font-size: 15px;
+            color: #333;
         }
 
         .psearch {
@@ -153,47 +168,229 @@
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
         }
 
-
         .card:hover {
             transform: translateY(-20px);
             transition: all 0.7s;
             z-index: 99;
         }
+
+        .filter {
+            padding: .5rem 0rem;
+            position: absolute;
+            left: 10px;
+            top: 200px;
+            width: 380px;
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+
+
+        }
+
+        .filter-btn {
+            display: block;
+            text-align: start;
+            padding: 0.5rem 2rem;
+            border: none;
+            outline: none;
+            width: 380px;
+            cursor: pointer;
+            background-color: white;
+
+        }
+
+        .filter-btn:hover {
+            color: white;
+            background-color: #e79090;
+        }
+
+        .filter-btn:focus {
+            color: white;
+            outline: none;
+            background-color: #D95252;
+        }
+
+        .filter-price {
+            padding: .5rem 1rem;
+            position: absolute;
+            left: 10px;
+            top: 600px;
+            width: 380px;
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+
+
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: #03a9f4;
+            border-radius: 25px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 1);
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -8px;
+        }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #03a9f4;
+        }
+
+        .range-wrap {
+            /* width: 500px; */
+            position: absolute;
+        }
+
+        .range-value {
+            position: absolute;
+            /* top: ; */
+        }
+
+        .range-value span {
+            width: 50px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            /* background: #03a9f4; */
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: -20px;
+            transform: translate(-50%, 0);
+            border-radius: 6px;
+        }
+
+        .range-value span:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 10px solid red;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            margin-top: -1px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="includedContent"></div>
-    <div class="container" id="container">
-        <br><br>
-        <h1>Product</h1>
-        <p id="qty_auto"></p>
-        <br>
+    <div class="filter">
+        <p style="text-align: center;margin-top: 10px;">ยี่ห้อโน๊ตบุ๊ค</p>
+        <hr>
+        <button class="filter-btn" onclick="filterall(); ">
+            ทั้งหมด
+        </button>
+        <button class="filter-btn" onclick="filter('ACER'); ">
+            ACER
+        </button>
+        <button class="filter-btn" onclick="filter('ASUS'); ">
+            ASUS
+        </button>
+        <button class="filter-btn" onclick="filter('CONCEPTD'); ">
+            CONCEPTD
+        </button>
+        <button class="filter-btn" onclick="filter('DELL'); ">
+            DELL
+        </button>
+        <button class="filter-btn" onclick="filter('HP'); ">
+            HP
+        </button>
+        <button class="filter-btn" onclick="filter('LENOVO'); ">
+            LENOVO
+        </button>
+    </div>
 
-        <div class="d-flex justify-content-center">
-            <div class="psearch  d-flex align-items-center">
-                <i style="color: rgb(217, 201, 201);" class="fa fa-search" aria-hidden="true"></i>
-                <input id="search" type="search">
-            </div>
+    <!-- filter price -->
+    <!-- <div class="filter-price">
+        <input style="width: 360px;" type="range" id="filter-price" name="cowbell" 
+         min="0" max="125900" value="125900" step="5000">
+    </div> -->
+    <div class="range-wrap filter-price">
+        <p style="text-align: center;margin-top: 10px;">เลทราคา</p>
+        <hr>
+        <br>
+        <div class="range-value" id="rangeV"></div>
+        <input style="" id="range" type="range" min="0" max="125900" value="125900" step="1000">
+    </div>
+
+    <br><br>
+    <p id="qty_auto"></p>
+    <br>
+
+    <!-- search -->
+    <div class="d-flex justify-content-center">
+        <div class="psearch  d-flex align-items-center">
+            <i style="color: rgb(217, 201, 201);" class="fa fa-search" aria-hidden="true"></i>
+            <input id="search" type="search">
         </div>
+    </div>
+    <div class="container" id="container">
 
         <br>
-        <div>
+        <div class="back2">
             <div class="row" id="row"></div>
         </div>
         <br><br>
-
-
-        <div class="d-flex justify-content-center">
-            <button id='addp' type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-                Add New Product
-            </button>
-        </div>
-        <br><br>
-
     </div>
+    <div class="d-flex justify-content-center">
+        <button id='addp' type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+            Add New Product
+        </button>
+    </div>
+    <br><br>
 
+    <script>
+        function filterall() {
+            const col = document.getElementsByClassName('col-4');
+            for (let i = 0; i < col.length; i++) {
+                col[i].style.display = 'block';
+            }
+        }
 
+        function filter(txt) {
+            txt = txt.toLowerCase()
+            const col = document.getElementsByClassName('col-4');
+            const title = document.getElementsByClassName('card-title');
+            console.log('title', title[0]);
+            console.log('parameter', txt)
+
+            for (let i = 0; i < title.length; i++) {
+                if (title[i].innerText.toLowerCase().includes(txt)) {
+                    col[i].style.display = 'block';
+                } else {
+                    col[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

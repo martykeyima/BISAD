@@ -45,7 +45,8 @@
         }
 
         body {
-            background-color: #f0e4e4;
+            background: rgb(204, 203, 249);
+            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
         }
 
         .container {
@@ -85,14 +86,23 @@
             margin-left: 7px;
             margin-right: 14px;
             color: #a1a1a2;
+            transition: all 0.5s;
         }
 
         .minus {
             cursor: not-allowed;
         }
+        .minus:hover {
+            background-color: #c1c1c7;
+            transition: all 0.5s;  
+        }
 
         .plus {
             cursor: pointer;
+        }
+        .plus:hover {
+            background-color: #c1c1c7;
+            transition: all 0.5s;
         }
 
         .paragraph {
@@ -107,21 +117,34 @@
         }
 
         .btn1 {
+            background-color: #033A3A;
+            color: white;
             padding: 7px 10px;
             border-radius: 17px;
             border: none;
             outline: 0 !important;
             width: 200px;
             cursor: pointer;
+            transition: all 0.5s;
         }
+
         .btn1:hover {
-            box-shadow: 3px 3px 100px rgba(0, 0, 0, 0.1);
+            background-color: #1c6969;
+            transition: all 0.5s;
         }
+
         .cart {
             margin-left: 20px;
         }
+
         #detail {
             margin-left: 10px;
+        }
+
+        #price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #D95252;
         }
 
         /* *:focus {
@@ -138,8 +161,7 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <img id="img" src=""
-                        width="300px" alt="">
+                    <img id="img" src="" width="300px" alt="">
                 </div>
 
                 <div class="col-md-8">
