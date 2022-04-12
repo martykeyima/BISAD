@@ -25,7 +25,8 @@
         body {
             width: 100%;
             height: 800px;
-            background: #d9c4bf;
+            background: rgb(3, 140, 127);
+            background: linear-gradient(0deg, rgba(3, 140, 127, 1) 0%, rgba(173, 217, 209, 1) 70%);
             font-family: 'Kodchasan', sans-serif;
         }
 
@@ -42,7 +43,7 @@
         }
 
         .singup {
-            background-color: #a6938f;
+            background-color: #365555;
             margin: auto auto auto auto;
             width: 40%;
             height: 680px;
@@ -73,6 +74,8 @@
         }
 
         button[class="btn btn-dark"] {
+            background-color: #da5454;
+            border-color: #da5454;
             margin-top: 30px;
             margin-left: 40%;
             border-radius: 30px;
@@ -88,15 +91,18 @@
         <form id="signup">
             <div class="form-group">
                 <label for="user">ชื่อผู้ใช้</label>
-                <input type="text" class="form-control" id="user" name="username" aria-describedby="user" placeholder="User name" required>
+                <input type="text" class="form-control" id="user" name="username" aria-describedby="user"
+                    placeholder="User name" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">รหัสผ่าน</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    required>
             </div>
             <div class="form-group">
                 <label for="name">ชื่อ-นามสกุล</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="name" placeholder="name" required>
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="name" placeholder="name"
+                    required>
             </div>
             <div class="form-group">
                 <label for="phone">เบอร์โทรศัพท์</label>
