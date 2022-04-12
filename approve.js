@@ -15,6 +15,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const ul = document.getElementById('ul');
 
+//tranform number to number with comma
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
 //read
 function renderHistory(his) {
 
@@ -167,6 +176,7 @@ function renderHistory(his) {
 
     const li = document.createElement('li');
     const name = document.createElement('p');
+    const date = document.createElement('p');
     const total = document.createElement('p');
     const slip = document.createElement('img');
     const hr = document.createElement('hr');
@@ -182,20 +192,22 @@ function renderHistory(his) {
     col1.className = 'col-5';
     col2.className = 'col-7';
 
-
+    const dateObject = new Date(his.data().milliseconds)
+    date.innerText = `ชำระเงินวันที่ ${dateObject.toLocaleString("th-TH", { day: "numeric" })} ${dateObject.toLocaleString("th-TH", { month: "long" })} ${dateObject.toLocaleString("th-TH", { year: "numeric" })}`
     name.innerText = `ชื่อ ${his.data().name}`;
-    total.innerText = `ยอดรวม ${his.data().total}`
-    address.innerText = his.data().address;
+    total.innerText = `ยอดรวม ${numberWithCommas(his.data().total)}`
+    address.innerText = `ที่อยู่ ${his.data().address}`
     phone.innerText = `เบอร์โทรศัพท์ ${his.data().phone}`
 
 
-
-    li.appendChild(name);
+    li.appendChild(date);
+    // li.appendChild(name);
     li.appendChild(total);
     col1.appendChild(slip);
 
-    col2.appendChild(phone);
+    col2.appendChild(name);
     col2.appendChild(address);
+    col2.appendChild(phone);
     col2.appendChild(form);
 
 
@@ -216,7 +228,7 @@ function renderHistory(his) {
 // read
 try {
     const history = collection(db, "history");
-    const q = query(history, where('status', '==', 'wait'));
+    const q = query(history, where('status', '==', 'wait'),orderBy('milliseconds','desc'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderHistory(doc);

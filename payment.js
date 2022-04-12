@@ -76,6 +76,7 @@ function renderUser(user) {
         e.preventDefault()
         var src = sessionStorage.getItem("src");
         // console.log('src', src);
+        const milliseconds = Date.now();
 
 
         // add history
@@ -91,7 +92,8 @@ function renderUser(user) {
             productlis: lis1,
             productsrc : productsrc,
             productname : productname,
-            productprice : productprice
+            productprice : productprice,
+            milliseconds : milliseconds
         })
 
         lis1 = []

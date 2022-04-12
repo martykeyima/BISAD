@@ -33,6 +33,19 @@ function renderHistory(his) {
     const row1 = document.createElement('div');
     row1.setAttribute('class', 'row card');
 
+    const date = document.createElement('div')
+    const datetext = document.createElement('p');
+    const hr = document.createElement('hr');
+    const dateObject = new Date(his.data().milliseconds)
+    const day = dateObject.toLocaleString("th-TH", { day: "numeric" })
+    const month = dateObject.toLocaleString("th-TH", { month: "long" })
+    const year = dateObject.toLocaleString("th-TH", { year: "numeric" })
+    datetext.innerText = `ชำระเงินวันที่ ${day} ${month} ${year}   `
+    date.appendChild(datetext);
+    date.appendChild(hr)
+    row1.appendChild(date)
+    console.log(typeof (dateObject.toLocaleString()))
+
     const productid = his.data().productlis;
     const productsrc = his.data().productsrc;
     const productname = his.data().productname;
@@ -147,13 +160,13 @@ function renderHistory(his) {
     }
 
     parent.appendChild(row1)
-    
+
 }
 
 // read
 try {
     const history = collection(db, "history");
-    const q = query(history, where('idu', '==', idu));
+    const q = query(history, where('idu', '==', "oUwzDtY1WMEvJGdAsH2K"), orderBy('milliseconds', 'desc'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderHistory(doc);

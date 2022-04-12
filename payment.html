@@ -19,24 +19,33 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <style>
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            outline: none;
+            box-shadow: none !important;
+            border: 1px solid #ccc !important;
+        }
+
         * {
             margin: 0;
             box-sizing: border-box;
         }
 
         body {
-            background-color: #f0e4e4;
+            background-color: #F08080;
+            /* background-color: #f0e4e4; */
         }
 
         .container {
-            width: 50rem;
+            width: 55rem;
             margin: 0 auto;
         }
 
         .form-control {
             border-radius: 1rem;
             height: 3.5rem;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
         }
 
         .address {
@@ -47,13 +56,13 @@
             background-color: white;
             padding: 40px;
             border-radius: 1rem;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
         }
 
         .pay {
             padding: 40px 5px;
             border-radius: 1rem;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
             background-color: white;
             width: 60%;
             position: relative;
@@ -77,6 +86,13 @@
             /* margin-right: auto; */
             font-size: 1.25rem;
         }
+        /* .back-form {
+            margin: 0 auto;
+            background-color: #f0e4e4;
+            background-color: #F08080;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+        } */
     </style>
 </head>
 
@@ -85,40 +101,44 @@
         <br><br>
         <h1>Payment</h1>
         <br>
-        <form id="payment">
-            <div class="mb-3">
-                <label for="name" class="form-label">ชื่อ</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
+        <div class="back-form">
 
-            <div class="mb-3">
-                <label for="address" class="form-label">ที่อยู่</label>
-                <textarea type="text" class="form-control address" name="address" required></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="phone" class="form-label">เบอร์โทร</label>
-                <input type="text" class="form-control" name="phone" required>
-            </div>
-
-
-
-            <label for="slip" class="form-label">สลิปโอนเงิน</label>
-            <div class="mb-3 slip d-flex justify-content-center">
-                <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
-                    onchange="previewFile()" required>
-            </div>
-            <br><br>
-            <div class="d-flex justify-content-end">
-                <div class="pay d-flex justify-content-center">
-                    <div class="align-self-center">
-                        <p id="p-price"></p>
-                        <button type="submit" class="btn">ชำระเงิน</button>
+            <form id="payment">
+                <div class="mb-3">
+                    <label for="name" class="form-label">ชื่อ</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="address" class="form-label">ที่อยู่</label>
+                    <textarea type="text" class="form-control address" name="address" required></textarea>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="phone" class="form-label">เบอร์โทร</label>
+                    <input type="text" class="form-control" name="phone" required>
+                </div>
+    
+    
+    
+                <label for="slip" class="form-label">สลิปโอนเงิน</label>
+                <div class="mb-3 slip d-flex justify-content-center">
+                    <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
+                        onchange="previewFile()" required>
+                </div>
+                <br><br>
+                <div class="d-flex justify-content-end">
+                    <div class="pay d-flex justify-content-center">
+                        <div class="align-self-center">
+                            <p id="p-price"></p>
+                            <button type="submit" class="btn">ชำระเงิน</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-        </form>
+                <br>
+            </form>
+        </div>
+        <br>
 
         <script>
 
