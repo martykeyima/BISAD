@@ -19,6 +19,8 @@ console.log('idp', idp)
 console.log('idu', idu)
 
 const form = document.getElementById("updateP");
+const h1 = document.getElementById('h1');
+
 
 function renderProduct(product) {
 
@@ -27,6 +29,8 @@ function renderProduct(product) {
     form.name.value = product.data().name;
     form.detail.value = product.data().detail;
     form.price.value = product.data().price;
+
+    h1.innerText = `แก้ไข ${form.name.value}`
 
 
     // update ข้อมูลใหม่เมื่อกด submit
@@ -56,3 +60,11 @@ try {
 } catch (error) {
     throw error
 }
+
+const show = document.getElementById('show');
+show.src = form.src.value
+
+const src = document.getElementById('src');
+src.addEventListener('input', (e) => {
+    show.src = e.target.value
+})

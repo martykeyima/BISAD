@@ -19,8 +19,21 @@
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
         input[type="text"],
         input[type="password"],
+        input[type="number"],
         textarea {
             outline: none;
             box-shadow: none !important;
@@ -38,12 +51,29 @@
         }
 
         .container {
-            width: 55rem;
+            width: 70rem;
             margin: 0 auto;
+
+
+        }
+
+        .back-form {
+            padding: 10px 20px;
+            width: 55rem;
+            background-color: white;
+            margin: 0 auto;
+            border-radius: 2rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        label {
+
+            font-weight: bold;
         }
 
         .form-control {
-            border-radius: 1rem;
+            /* border-radius: 1rem; */
             height: 3.5rem;
             /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
         }
@@ -53,9 +83,10 @@
         }
 
         .slip {
-            background-color: white;
+            /* background-color: white; */
             padding: 40px;
-            border-radius: 1rem;
+            border: 1px solid #ccc;
+            /* border-radius: 1rem; */
             /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
         }
 
@@ -63,14 +94,18 @@
             padding: 40px 5px;
             border-radius: 1rem;
             /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
-            background-color: white;
-            width: 60%;
+            /* background-color: black; */
+            /* color: white; */
+            width: 40%;
             position: relative;
+            margin-top: 20px;
+
         }
 
         #p-price {
             text-align: center;
             font-size: 1.75rem;
+            font-weight: bold;
         }
 
         .btn {
@@ -133,17 +168,20 @@
 
                 <div class="mb-3">
                     <label for="phone" class="form-label">เบอร์โทร</label>
-                    <input type="text" class="form-control" name="phone" required>
+                    <input type="number" class="form-control" name="phone" required>
                 </div>
 
 
-                <div>
-                    <img src="" alt="" id="output_shoppic" style="max-width: 200px;">
-                </div>
+
                 <label for="slip" class="form-label">สลิปโอนเงิน</label>
                 <div class="mb-3 slip d-flex justify-content-center">
-                    <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
-                        onchange="previewFile(event)" required>
+                    <div class="d-flex align-items-center">
+                        <input type="file" class="form-control-file" id="slip" name="slip" accept="image/*"
+                            onchange="previewFile(event)" required>
+                        <div>
+                            <img src="" alt="" id="output_shoppic" style="max-width: 200px;">
+                        </div>
+                    </div>
                 </div>
                 <br><br>
                 <div class="d-flex justify-content-between">
@@ -176,7 +214,6 @@
                     </div>
                 </div>
                 <br>
-
                 <div class="d-flex justify-content-end">
                     <div class="pay d-flex justify-content-center">
                         <div class="align-self-center">
@@ -185,9 +222,11 @@
                         </div>
                     </div>
                 </div>
+
                 <br>
             </form>
         </div>
+        
         <br>
 
         <script>
@@ -225,6 +264,7 @@
 
 
     </div>
+    <br>
 
 
 

@@ -19,9 +19,33 @@
             background: rgb(204, 203, 249);
             background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
         }
+
         .container {
-            width: 960px;
+            width: 70rem;
             margin: 0 auto;
+            
+            
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .back-form {
+            padding: 20px 20px;
+            width: 55rem;
+            background-color: white;
+            margin: 0 auto;
+            border-radius: 2rem;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            
         }
     </style>
 </head>
@@ -30,31 +54,39 @@
 
     <div class="container">
         <br><br>
-        <h1>Update Product</h1>
         <br><br>
-
-        <form id="updateP">
-            <div class="mb-3">
-              <label for="image" class="form-label">Image Url</label>
-              <input type="text" class="form-control" name="src" required>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Product Name</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Price</label>
-                <input type="text" class="form-control" name="price" required>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Detail</label>
-                <textarea class="form-control" rows="3" name="detail" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
         
+        <div class="back-form">
+            <br>
+            <h5 id="h1"></h5>
+            <br>
+            <form id="updateP">
+                <div class="mb-3">
+                    <img src="" alt="" id="show" style="width: 200px; border-radius: 2rem;">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image Url</label>
+                    <input type="text" class="form-control" id="src" name="src" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="price" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Detail</label>
+                    <textarea class="form-control" rows="3" name="detail" required></textarea>
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
     </div>
+    <br><br>
 
 </body>
 

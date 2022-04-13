@@ -56,5 +56,12 @@ try {
     throw error
 }
 
+const show = document.getElementById('show');
+
+const src = document.getElementById('src');
+src.addEventListener('input', (e) => {
+    show.src = e.target.value
+})
+
 // read
 // call read

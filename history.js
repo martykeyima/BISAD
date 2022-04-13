@@ -85,7 +85,7 @@ function renderHistory(his) {
 
             const price = document.createElement('p')
             price.setAttribute('style', 'margin-top: 40px;')
-            price.innerText = `฿${numberWithCommas(productprice[i])}`;
+            price.innerText = `รวม ฿${numberWithCommas(productprice[i])}`;
 
             const qty = document.createElement('p');
             qty.setAttribute('style', 'margin-top: 40px;')
