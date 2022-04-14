@@ -19,7 +19,7 @@ console.log('idp', idp)
 console.log('idu', idu)
 
 const form = document.getElementById("updateP");
-const h1 = document.getElementById('h1');
+// const h1 = document.getElementById('h1');
 
 
 function renderProduct(product) {
@@ -30,20 +30,26 @@ function renderProduct(product) {
     form.detail.value = product.data().detail;
     form.price.value = product.data().price;
 
-    h1.innerText = `แก้ไข ${form.name.value}`
-
 
     // update ข้อมูลใหม่เมื่อกด submit
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
+        if (form.src.value == '') {
+            var productsrt = sessionStorage.getItem("srcproduct");
+            sessionStorage.removeItem("srcproduct");
+        } else {
+            var productsrt = form.src.value
+        }
 
         const washingtonRef = doc(db, "products", idp);
         await updateDoc(washingtonRef, {
-            src: form.src.value,
+            src: productsrt,
             name: form.name.value,
             price: form.price.value,
             detail: form.detail.value,
         })
+        //อย่าลืม remove ค่าที่ไม่ใช้แล้ว
+        sessionStorage.removeItem("favoriteMovie");
 
         window.location.href = "product.html";
     })

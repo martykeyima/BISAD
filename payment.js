@@ -97,12 +97,14 @@ function renderUser(user) {
         })
 
         lis1 = []
-        src = ''
+        sessionStorage.removeItem("src");
+        sessionStorage.removeItem("lis1");
+        sessionStorage.removeItem("raka");
         raka = 0
-        sessionStorage.setItem("lis1", lis1);
-        sessionStorage.setItem("raka", raka);
-        console.log('src', src);
-        console.log('lis1', lis1)
+        // sessionStorage.setItem("lis1", lis1);
+        // sessionStorage.setItem("raka", raka);
+        // console.log('src', src);
+        // console.log('lis1', lis1)
         
         //update basket
         const washingtonRef = doc(db, "users", idu);
@@ -128,10 +130,3 @@ try {
 } catch (error) {
     throw error
 }
-
-
-
-// $('input[type=file]').change(function () {
-//     console.dir(this.files[0])
-// })
-

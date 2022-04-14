@@ -14,6 +14,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 var idu = sessionStorage.getItem("idu");
 console.log('idu', idu);
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
 
 const pdiv = document.getElementById("row");
 const addp = document.getElementById('addp');
@@ -196,7 +198,7 @@ function renderProduct(product) {
     })
 
     //if admin
-    if (['5vzP4VuX6LxmWeF5zBlY', 'EW0xFyQdDlvyXZe6vthz', 'EW0xFyQdDlvyXZe6vthz', 'aJ153G9WP0dYq0sxUrNl', 'oUwzDtY1WMEvJGdAsH2K', 'yjR1SZjB62doWuKzg2I6'].includes(idu)) {
+    if (ida != ''){
         console.log('welcome admin')
     } else {
         del.setAttribute('style', 'display:none;');

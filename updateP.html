@@ -23,8 +23,8 @@
         .container {
             width: 70rem;
             margin: 0 auto;
-            
-            
+
+
         }
 
         /* Chrome, Safari, Edge, Opera */
@@ -38,14 +38,15 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
         .back-form {
-            padding: 20px 20px;
+            padding: 20px 40px;
             width: 55rem;
             background-color: white;
             margin: 0 auto;
             border-radius: 2rem;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-            
+
         }
     </style>
 </head>
@@ -55,18 +56,31 @@
     <div class="container">
         <br><br>
         <br><br>
-        
+
         <div class="back-form">
-            <br>
-            <h5 id="h1"></h5>
-            <br>
             <form id="updateP">
+                <div class="mb-3 d-flex justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <img src="" alt="" id="show" style="width: 200px; border-radius: 2rem;">
+                        </div>
+                        <div>
+                            <img src="" alt="" id="output_shoppic" style="width: 200px; border-radius: 2rem;">
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-3">
-                    <img src="" alt="" id="show" style="width: 200px; border-radius: 2rem;">
+                    <div>
+                        <label for="image" class="form-label">Image File</label>
+                    </div>
+                    <div class="d-flex justify-content-center"
+                        style="border: 1px solid #ccc; padding: .5rem 1rem;border-radius: 5px;">
+                        <input type="file" onchange="previewFile(event)">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image Url</label>
-                    <input type="text" class="form-control" id="src" name="src" required>
+                    <input type="text" class="form-control" id="src" name="src">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Product Name</label>
@@ -80,7 +94,7 @@
                     <label for="image" class="form-label">Detail</label>
                     <textarea class="form-control" rows="3" name="detail" required></textarea>
                 </div>
-    
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -88,6 +102,37 @@
     </div>
     <br><br>
 
+    <script>
+
+
+        function previewFile(event) {
+            // console.log('commy')
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                // console.log(reader.result)
+                // const lll = reader.result;
+                sessionStorage.setItem("srcproduct", reader.result);
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                console.log('pear')
+            }
+
+            var preview = document.getElementById("output_shoppic");
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                preview.src = src;
+                preview.style.display = "block";
+            } else if (event.target.files.length == 0) {
+                preview.style.display = "none";
+            }
+
+
+        }
+    </script>
 </body>
 
 </html>

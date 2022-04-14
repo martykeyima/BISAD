@@ -166,7 +166,7 @@ function renderHistory(his) {
 // read
 try {
     const history = collection(db, "history");
-    const q = query(history, where('idu', '==', "oUwzDtY1WMEvJGdAsH2K"), orderBy('milliseconds', 'desc'));
+    const q = query(history, where('idu', '==', idu), orderBy('milliseconds', 'desc'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderHistory(doc);

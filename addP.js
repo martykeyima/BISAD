@@ -33,9 +33,15 @@ try {
         e.preventDefault();
         // let com = document.getElementById("name").value;
         const namep = form.name.value;
+        if (form.src.value == '') {
+            var productsrt = sessionStorage.getItem("srcproduct"); 
+            sessionStorage.removeItem("srcproduct");
+        } else {
+            var productsrt = form.src.value
+        }
 
         await addDoc(collection(db, "products"), {
-            src: form.src.value,
+            src: productsrt,
             name: form.name.value,
             price: form.price.value,
             detail: form.detail.value
@@ -51,6 +57,7 @@ try {
         querySnapshot.forEach(doc => {
             const n = renderProduct(doc);
         })
+        window.location.href = 'product.html'
     });
 } catch (error) {
     throw error
