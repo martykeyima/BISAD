@@ -37,7 +37,9 @@ form.addEventListener('submit', async (e) => {
         password: form.password.value,
         name: form.name.value,
         address: form.address.value,
-        phone: form.phone.value
+        phone: form.phone.value,
+        ida : '',
+        src : ''
     })
 
     // reset value to null
@@ -62,3 +64,9 @@ form.addEventListener('submit', async (e) => {
     //goto sign in
     window.location.href = "signin.html";
 })
+
+
+const user = document.getElementById('user');
+// user.addEventListener('input', async (e) => {
+//     console.log('commy')
+// });

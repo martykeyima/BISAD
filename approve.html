@@ -19,11 +19,20 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="approve.js" type="module"></script>
     <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
 
     <!-- mawin -->
+    <!-- mawin -->
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -33,10 +42,13 @@
         }
 
         body {
-            /* background-color: #f0e4e4; */
-            /* background-color: #F08080; */
-            background: rgb(204, 203, 249);
-            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
+            font-family: 'Kanit', sans-serif;
+            background: #9CECFB;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
 
         .container {
@@ -52,14 +64,54 @@
             width: 80%;
             position: relative;
         }
+
+        #qty_auto {
+            position: absolute;
+            padding: 1px;
+            background-color: orange;
+            border-radius: 50%;
+            width: 20px;
+            text-align: center;
+            display: none;
+            font-size: 12px;
+            top: -10px;
+            right: 1px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
+    <header>
+        <a href="product.html" style="margin-left: 10%;cursor: pointer;">
+            <img src="img/logo.jpg" alt="LOGO" width="100vw"></a>
+        </a>
+        <nav>
+            <div class="nav_link"><a href="history.html"
+                    style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a>
+            </div>
+            <a id="basketicon" href="basket.html" style="position: relative;" class="nav_link"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <p style="position: absolute;" id="qty_auto"></p>
+            </a>
+            <div class="nav_link" style="position: relative;">
+                <a id="Profile" class="user" style="margin-right: 100px;cursor: pointer;"><i class="fa fa-user-circle"
+                        aria-hidden="true"></i></a>
+                <div id="hoverDropdown" class="hoverDropdown"
+                    style="position: absolute; display: none; background-color: white;">
+                    <p><a class="menu" href="Profile.html">บัญชี</a></p>
+                    <p><a id="approveid" class="menu" href="approve.html">อนุมติสินค้า</a></p>
+                    <div class="d-flex justify-content-end">
+                        <button id="out" class="out">Out</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div id="includedContent"></div>
     <div class="container" id="container">
-        <br><br>
-        <h1>approve</h1>
+        <div style="height: 100px;"></div>
+        <h1 style="color: white;">เช็คสลิปโอนเงินลูกค้า</h1>
         <br>
 
         <ul id="ul">
@@ -67,7 +119,13 @@
 
         <br>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            $('#Profile').click(function () {
+                $('#hoverDropdown').toggle(300);
+            });
+        });
+    </script>
 
 </body>
 

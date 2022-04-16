@@ -19,6 +19,24 @@ console.log('idu', idu);
 
 const parent = document.getElementById('container');
 
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
+if (ida != 'admin') {
+    document.getElementById('approveid').style.display = 'none'
+}
+
+var lis3 = sessionStorage.getItem("lis1");
+console.log('lis3', (lis3))
+const lis1 = lis3.split(',');
+console.log('lis1', lis1)
+
+//aty_auto
+const qty_auto = document.getElementById('qty_auto');
+if (lis1.length - 1 > 0) {
+    qty_auto.innerText = `${lis1.length - 1}`
+    qty_auto.style.display = 'block'
+}
+
 //tranform number to number with comma
 function numberWithCommas(x) {
     x = x.toString();
@@ -174,3 +192,13 @@ try {
 } catch (error) {
     throw error
 }
+
+const out = document.getElementById('out')
+out.addEventListener('click', async (e) => {
+    sessionStorage.removeItem("idu");
+    sessionStorage.removeItem("ida");
+    sessionStorage.removeItem("lis1");
+    sessionStorage.removeItem("lis2");
+    sessionStorage.removeItem("ida");
+    window.location.href = "signin.html";
+})

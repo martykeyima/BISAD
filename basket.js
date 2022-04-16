@@ -16,6 +16,14 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 var idu = sessionStorage.getItem("idu");
 console.log('idu', idu);
+
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
+if (ida != "admin") {
+    document.getElementById('approveid').style.display = 'none'
+    console.log('check ida')
+}
+
 var lis1 = sessionStorage.getItem("lis1");
 lis1 = lis1.split(',');
 console.log('lis1', lis1);
@@ -25,6 +33,13 @@ const lisprice = [];
 const lisproduct = [];
 
 const ppayment = document.getElementById('p-payment')
+
+//qty_auto
+const qty_auto = document.getElementById('qty_auto');
+if (lis1.length - 1 > 0) {
+    qty_auto.innerText = `${lis1.length - 1}`
+    qty_auto.style.display = 'block'
+}
 
 
 //tranform number to number with comma
@@ -191,6 +206,7 @@ function renderProduct(product, count) {
                 console.log('ราคา', raka)
                 ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
                 sessionStorage.setItem("raka", raka);
+                qty_auto.innerText = `${lis1.length - 1}`
             }
 
             if (qty.value == 1) {
@@ -213,6 +229,7 @@ function renderProduct(product, count) {
             await updateDoc(washingtonRef, {
                 productlis: lis1
             })
+            qty_auto.innerText = `${lis1.length - 1}`
 
             lisprice.push(parseInt(product.data().price))
             const raka = lisprice.reduce((a, b) => a + b, 0)
@@ -247,3 +264,13 @@ const raka = lisprice.reduce((a, b) => a + b, 0)
 console.log('ราคา', raka)
 ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
 sessionStorage.setItem("raka", raka);
+
+const out = document.getElementById('out')
+out.addEventListener('click', async (e) => {
+    sessionStorage.removeItem("idu");
+    sessionStorage.removeItem("ida");
+    sessionStorage.removeItem("lis1");
+    sessionStorage.removeItem("lis2");
+    sessionStorage.removeItem("ida");
+    window.location.href = "signin.html";
+})

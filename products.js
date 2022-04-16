@@ -17,8 +17,13 @@ console.log('idu', idu);
 var ida = sessionStorage.getItem("ida");
 console.log('ida', ida);
 
+if (ida != 'admin') {
+    document.getElementById('approveid').style.display = 'none'
+}
+
 const pdiv = document.getElementById("row");
 const addp = document.getElementById('addp');
+
 
 //tranform number to number with comma
 function numberWithCommas(x) {
@@ -36,20 +41,22 @@ const q = query(users, where('idu', '==', idu));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach(doc => {
     const lis2 = doc.data().productlis
-    console.log(lis2)
+    console.log('lis2',lis2)
     sessionStorage.setItem("lis2", lis2);
     // เมื่อชำระเงินแล้วอย่าลืมมารีเซ็ต
 
 })
 
-var lis3 = sessionStorage.getItem("lis2");
-console.log('lis3', (lis3))
-const lis1 = lis3.split(',');
-console.log('lis1', lis1)
+var lis1 = sessionStorage.getItem("lis2");
+// console.log('lis3', (lis3))
+lis1 = lis1.split(',');
+console.log('lis1 first', lis1)
+sessionStorage.setItem("lis1", lis1);
 
 const qty_auto = document.getElementById('qty_auto');
 if (lis1.length - 1 > 0) {
-    qty_auto.innerText = `เตือนว่าในตะกร้ามีกี่ชิ้น ${lis1.length - 1}`
+    qty_auto.innerText = `${lis1.length - 1}`
+    qty_auto.style.display = 'block'
 }
 
 function renderProduct(product) {
@@ -146,7 +153,9 @@ function renderProduct(product) {
         let id = e.target.parentElement.getAttribute('databody-id');
         lis1.push(id);
         console.log('lis1', lis1);
-        qty_auto.innerText = `เตือนว่าในตะกร้ามีกี่ชิ้น ${lis1.length - 1}`
+        qty_auto.innerText = `${lis1.length - 1}`
+        qty_auto.style.display = 'block'
+        // sessionStorage.setItem("lis1", lis1);
 
         const washingtonRef = doc(db, "users", idu);
         await updateDoc(washingtonRef, {
@@ -198,7 +207,7 @@ function renderProduct(product) {
     })
 
     //if admin
-    if (ida != ''){
+    if (ida == 'admin'){
         console.log('welcome admin')
     } else {
         del.setAttribute('style', 'display:none;');
@@ -273,3 +282,23 @@ range.addEventListener('input', async (e) => {
     }
     
 });
+
+const basketicon = document.getElementById('basketicon');
+basketicon.addEventListener('click', async (e) => {
+    sessionStorage.setItem("lis1", lis1);
+    window.location.href = "basket.html";
+})
+
+const history = document.getElementById('history')
+history.addEventListener('click', async (e) => {
+    sessionStorage.setItem("lis1", lis1);
+    window.location.href = "history.html";
+})
+
+const out = document.getElementById('out')
+out.addEventListener('click', async (e) => {
+    sessionStorage.removeItem("idu");
+    sessionStorage.removeItem("ida");
+    sessionStorage.removeItem("lis2");
+    window.location.href = "signin.html";
+})

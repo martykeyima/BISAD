@@ -13,13 +13,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const form = document.getElementById('payment');
-const pprice = document.getElementById('p-price');
 var idu = sessionStorage.getItem("idu");
 console.log('idu', idu);
 
-var raka = sessionStorage.getItem("raka");
-console.log('raka', raka);
+// var raka = sessionStorage.getItem("raka");
+// console.log('raka', raka);
+
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
+if (ida != 'admin') {
+    document.getElementById('approveid').style.display = "none"
+}
 
 var lis1 = sessionStorage.getItem("lis1");
 lis1 = lis1.split(',');
@@ -28,6 +32,12 @@ console.log('lis1', lis1);
 const productsrc = [];
 const productname = [];
 const productprice = [];
+
+const qty_auto = document.getElementById('qty_auto');
+if (lis1.length - 1 > 0) {
+    qty_auto.innerText = `${lis1.length - 1}`
+    qty_auto.style.display = 'block'
+}
 
 function renderProducts(product) {
     productsrc.push(product.data().src)
@@ -63,59 +73,137 @@ function numberWithCommas(x) {
     return x;
 }
 
-pprice.innerText = `ยอดรวม ${numberWithCommas(raka)}`
+const name = document.getElementById('name')
+const phone = document.getElementById('phone')
+const address = document.getElementById('address')
+const edit = document.getElementById('edit')
+const save = document.getElementById('save')
+const choose = document.getElementById('choose')
+const remove = document.getElementById('remove')
+const file = document.getElementById('file')
+const slip = document.getElementById('slip')
+const order = document.getElementById('order')
+const total1 = document.getElementById('total1')
+const total2 = document.getElementById('total2')
+const pay = document.getElementById('pay')
 
-function renderUser(user) {
-    form.name.value = user.data().name;
-    form.address.value = user.data().address;
-    form.phone.value = user.data().phone;
-    form.name.value = user.data().name;
+order.innerText = `ยอดรวม(${productname.length}รายการ)`
+const raka = productprice.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+const total3 = numberWithCommas(productprice.reduce((a, b) => parseInt(a) + parseInt(b), 0))
+total1.innerText = `฿${total3}`
+total2.innerText = `฿${total3}`
 
-    // update ข้อมูลใหม่เมื่อกด ชำระเงิน
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault()
-        var src = sessionStorage.getItem("src");
-        // console.log('src', src);
-        const milliseconds = Date.now();
+pay.addEventListener('click', async (e) => {
 
-
-        // add history
+    console.log(slip.src.length)
+    if (slip.src.length < 300) {
+        alert('กรุณาใส่สลิป')
+    } else {
         await addDoc(collection(db, "history"), {
+            address: address.value,
             idu: idu,
-            name: form.name.value,
-            address: form.address.value,
-            phone: form.phone.value,
-            slip: form.slip.value,
-            src: src,
-            total: raka,
-            status: 'wait',
+            milliseconds: Date.now(),
+            name: name.value,
+            phone: phone.value,
             productlis: lis1,
-            productsrc : productsrc,
-            productname : productname,
-            productprice : productprice,
-            milliseconds : milliseconds
+            productname: productname,
+            productprice: productprice,
+            productsrc: productsrc,
+            src: slip.src,
+            status: 'wait',
+            total: raka
         })
-
-        lis1 = []
-        sessionStorage.removeItem("src");
-        sessionStorage.removeItem("lis1");
-        sessionStorage.removeItem("raka");
-        raka = 0
-        // sessionStorage.setItem("lis1", lis1);
-        // sessionStorage.setItem("raka", raka);
-        // console.log('src', src);
-        // console.log('lis1', lis1)
-        
-        //update basket
         const washingtonRef = doc(db, "users", idu);
         await updateDoc(washingtonRef, {
             productlis: null
         })
-
+        lis1 = ''
+        sessionStorage.setItem("lis1", lis1);
         window.location.href = "history.html";
-    })
+    }
+})
 
 
+file.addEventListener('input', async (e) => {
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        // console.log(reader.result)
+        // const lll = reader.result;
+        const src = reader.result
+        console.log(src)
+        slip.src = src
+        choose.style.display = 'none'
+        remove.style.display = 'block'
+        // slip.style.display = 'block'
+
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        console.log('pear')
+    }
+
+
+    if (e.target.files.length > 0) {
+        var src = URL.createObjectURL(e.target.files[0]);
+        // preview.src = src;
+        slip.style.display = "block";
+    } else if (e.target.files.length == 0) {
+        slip.style.display = "none";
+    }
+})
+
+//slip
+choose.addEventListener('click', async (e) => {
+    file.click()
+})
+remove.addEventListener('click', async (e) => {
+    choose.style.display = 'block'
+    remove.style.display = 'none'
+    slip.src = ''
+})
+
+//edit
+edit.addEventListener('click', async (e) => {
+    name.removeAttribute('readonly')
+    phone.removeAttribute('readonly')
+    address.removeAttribute('readonly')
+    name.style.border = '1px solid #333'
+    phone.style.border = '1px solid #333'
+    address.style.border = '1px solid #333'
+    name.style.cursor = 'pointer'
+    phone.style.cursor = 'pointer'
+    address.style.cursor = 'pointer'
+    save.style.display = 'block'
+    edit.style.display = 'none'
+
+})
+
+//save
+save.addEventListener('click', async (e) => {
+    save.style.display = 'none'
+    name.setAttribute('readonly', '')
+    phone.setAttribute('readonly', '')
+    address.setAttribute('readonly', '')
+    name.style.border = '1px solid white'
+    phone.style.border = '1px solid white'
+    address.style.border = '1px solid white'
+    name.style.cursor = 'default'
+    phone.style.cursor = 'default'
+    address.style.cursor = 'default'
+    console.log(name.value)
+    save.style.display = 'none'
+    edit.style.display = 'block'
+
+})
+
+//render user
+function renderUser(user) {
+    name.value = user.data().name
+    phone.value = `${user.data().phone}`
+    address.value = user.data().address
 }
 
 
@@ -130,3 +218,13 @@ try {
 } catch (error) {
     throw error
 }
+
+const out = document.getElementById('out')
+out.addEventListener('click', async (e) => {
+    sessionStorage.removeItem("idu");
+    sessionStorage.removeItem("ida");
+    sessionStorage.removeItem("lis1");
+    sessionStorage.removeItem("lis2");
+    sessionStorage.removeItem("ida");
+    window.location.href = "signin.html";
+})

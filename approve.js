@@ -24,6 +24,17 @@ function numberWithCommas(x) {
     return x;
 }
 
+var lis1 = sessionStorage.getItem("lis1");
+// console.log('lis3', (lis3))
+lis1 = lis1.split(',');
+console.log('lis1', lis1)
+
+const qty_auto = document.getElementById('qty_auto');
+if (lis1.length - 1 > 0) {
+    qty_auto.innerText = `${lis1.length - 1}`
+    qty_auto.style.display = 'block'
+}
+
 //read
 function renderHistory(his) {
 
@@ -236,3 +247,11 @@ try {
 } catch (error) {
     throw error
 }
+
+const out = document.getElementById('out')
+out.addEventListener('click', async (e) => {
+    sessionStorage.removeItem("idu");
+    sessionStorage.removeItem("ida");
+    sessionStorage.removeItem("lis2");
+    window.location.href = "signin.html";
+})

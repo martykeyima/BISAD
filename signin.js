@@ -19,9 +19,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const form = document.getElementById('signin');
+const userlis = []
+
+
+//usermore
+function renderUsermore(users) {
+    userlis.push(users.data().username)
+}
 
 //read
-function renderUser (users, username, password) {
+function renderUser(users, username, password) {
     // console.log(users.data().password)
     // console.log(password)
 
@@ -29,7 +36,10 @@ function renderUser (users, username, password) {
 
         //pass value to storage
         sessionStorage.setItem("idu", users.id);
+        sessionStorage.setItem("ida", users.data().ida);
         window.location.href = "product.html";
+    } else {
+        alert('ใส่รหัสผิด')
     }
 }
 
@@ -49,7 +59,24 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         throw error
     }
+
     form.username.value = '';
     form.password.value = '';
+    if (userlis.includes(username)) {
+        console.log('มีนะคอม')
+    } else {
+        alert('ใส่ชื่อผู้ใช้ผิด')
+    }
 
 });
+
+try {
+    const users = collection(db, "users");
+    const q = query(users);
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc => {
+        renderUsermore(doc);
+    })
+} catch (error) {
+    throw error
+}

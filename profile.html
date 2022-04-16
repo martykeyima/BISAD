@@ -19,11 +19,23 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="profile.js" type="module"></script>
     <script src="https://kit.fontawesome.com/3bee1915b3.js" crossorigin="anonymous"></script>
 
-    <!-- mawin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 
+    <!-- mawin -->
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -33,15 +45,138 @@
         }
 
         body {
-            background: rgb(204, 203, 249);
-            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
+            font-family: 'Kanit', sans-serif;
+            background: #9CECFB;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
         }
 
-        </style>
+        #upload {
+            background-color: #ccc;
+            top: 90px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #upload:hover {
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .container {
+            width: 800px;
+        }
+
+        textarea {
+            border-style: none;
+            border-color: Transparent;
+            overflow: auto;
+            resize: none;
+            outline: none;
+        }
+
+        #qty_auto {
+            position: absolute;
+            padding: 1px;
+            background-color: orange;
+            border-radius: 50%;
+            width: 20px;
+            text-align: center;
+            display: none;
+            font-size: 12px;
+            top: -10px;
+            right: 1px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    
+    <header>
+        <a href="product.html" style="margin-left: 10%;cursor: pointer;">
+            <img src="img/logo.jpg" alt="LOGO" width="100vw"></a>
+        </a>
+        <nav>
+            <div class="nav_link"><a href="history.html" style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a>
+            </div>
+            <a id="basketicon"href="basket.html" style="position: relative;color: black;" class="nav_link"><i class="fa fa-shopping-cart"
+                    aria-hidden="true"></i>
+                <p style="position: absolute;" id="qty_auto"></p>
+            </a>
+            <div class="nav_link" style="position: relative;">
+                <a id="Profile" class="user" style="margin-right: 100px;cursor: pointer;"><i class="fa fa-user-circle"
+                        aria-hidden="true"></i></a>
+                <div id="hoverDropdown" class="hoverDropdown"
+                    style="position: absolute; display: none; background-color: white;">
+                    <p><a class="menu" href="Profile.html">บัญชี</a></p>
+                    <p><a id="approveid" class="menu" href="approve.html">อนุมติสินค้า</a></p>
+                    <div class="d-flex justify-content-end">
+                        <button id="out" class="out">Out</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div style="height: 100px;"></div>
+        <div class="row">
+            <div class="col-md-4" style="padding: .5rem .5rem;">
+                <div style="background-color: white;height: 200px;" class="d-flex justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <div class="img"
+                            style="width: 140px;height: 140px;position: relative;overflow: hidden;border-radius: 50%;">
+                            <img id="profile" src="https://www.w3schools.com/howto/img_avatar.png" style="width: 140px;"
+                                alt="">
+                            <div id="upload" style="position: absolute;height: 140px;width: 140px;">
+                                <p style="text-align: center; margin-top: 10px;">upload</p>
+                                <input type="file" name="" id="file" style="display: none;" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="padding: .5rem .5rem;">
+                <div style="background-color: white;height: 200px;padding: .5rem 1rem;">
+                    <div style="font-weight: bold;">รายละเอียดผู้ใช้
+                        <hr>
+                    </div>
+                    <div>
+                        <p style="font-size: 14px;font-weight: bold;">นวิน เวชสุวรรณ์</p>
+                        <p style="font-size: 14px;">0938905293</p>
+                        <textarea style="font-size: 14px;" row=2 cols="40"
+                            readonly>116/103 หมู่2 แขวงคู้ฝั่งเหนือ เขตหนองจอก กทม. 10530</textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: .5rem .5rem;">
+            <div style="width: 100%; height:120px;background-color: white;padding: .5rem 1rem;">
+                <p>ส่งข้อความถึงเราหน่อย</p>
+                <div class="d-flex justify-content-center"
+                    style="width: 750px;padding: .5rem 1rem;border-radius: 30px;border: 1px solid #ccc;">
+                    <div class="psearch  d-flex align-items-center" style="width: 100%;">
+                        <input autofocus id="comment" type="search"
+                            style="width: 100%;border: none;outline: none;margin-left: 10px;">
+                        <i id="send" style="cursor: pointer;" class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#Profile').click(function () {
+                $('#hoverDropdown').toggle(300);
+            });
+        });
+    </script>
 </body>
 
 </html>

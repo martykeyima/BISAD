@@ -32,35 +32,35 @@
         }
 
         body {
-            background-color: #f0e4e4;
+            /* background-color: #f0e4e4; */
+            background: rgb(204, 203, 249);
+            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
         }
 
         .container {
             width: 1000px;
             margin: 0 auto;
         }
+
+        input[type="file"]:hover {
+            background-color: black;
+        }
     </style>
 </head>
 
 <body>
-    <div id="includedContent"></div>
     <div class="container" id="container">
-        <form id="form">
 
-            <div class="form-group">
-                <label>Example select</label>
-                <select class="form-control" name="commy">
+        <div>
+            <div id="pear">pear</div>
+            <input type="text" id="country" name="country" value="Norway" readonly>
+        </div>
 
-                    <option value="wait">รอการอนุมัติ</option>
-                    <option style="width: 50%;">2</option>
-                    <option>3</option>
-                    <option value="pear">4</option>
-                    <option>5</option>
-                </select>
-                <input type="text" class="form-control"name="logisv">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div>
+            <img id="img" src="" alt="" style="width: 25px;">
+            <div id="commy">commy</div>
+            <input type="file" style="display:none;" id="file" name="file" accept="image/*" />
+        </div>
     </div>
 
 

@@ -14,10 +14,14 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background: rgb(204, 203, 249);
-            background: linear-gradient(225deg, rgba(204, 203, 249, 1) 0%, rgba(135, 237, 235, 1) 50%, rgba(52, 255, 208, 1) 100%);
+            background-image: linear-gradient(109.6deg, rgba(62, 161, 219, 1) 11.2%, rgba(93, 52, 236, 1) 100.2%);
+            font-family: 'Kanit', sans-serif;
         }
 
         .container {
@@ -47,6 +51,10 @@
             border-radius: 2rem;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 
+        }
+
+        label {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -80,7 +88,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image Url</label>
-                    <input type="text" class="form-control" id="src" name="src">
+                    <input type="text" class="form-control" id="src" name="src" autofocus>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Product Name</label>
@@ -92,10 +100,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Detail</label>
-                    <textarea class="form-control" rows="3" name="detail" required></textarea>
+                    <textarea class="form-control" rows="6" name="detail" required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">SAVE</button>
             </form>
         </div>
 
