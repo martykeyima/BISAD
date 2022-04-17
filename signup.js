@@ -71,7 +71,7 @@ form.addEventListener('submit', async (e) => {
         }
 
         //goto sign in
-        window.location.href = "signin.html";
+        window.location.href = "index.html";
     }
 
 })
