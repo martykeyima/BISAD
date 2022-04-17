@@ -38,6 +38,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 
     <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
         * {
             margin: 0;
             box-sizing: border-box;
@@ -72,13 +84,20 @@
             width: 800px;
         }
 
-        textarea {
+        input[type='text'],
+        input[type='number'] 
+        {
+            border: 1px solid #ccc;
+            padding: .1rem .2rem;
+        }
+
+        /* textarea {
             border-style: none;
             border-color: Transparent;
             overflow: auto;
             resize: none;
             outline: none;
-        }
+        } */
 
         #qty_auto {
             position: absolute;
@@ -93,6 +112,10 @@
             right: 1px;
             cursor: pointer;
         }
+
+        .change:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -102,10 +125,11 @@
             <img src="img/logo.jpg" alt="LOGO" width="100vw"></a>
         </a>
         <nav>
-            <div class="nav_link"><a href="history.html" style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a>
+            <div class="nav_link"><a href="history.html"
+                    style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a>
             </div>
-            <a id="basketicon"href="basket.html" style="position: relative;color: black;" class="nav_link"><i class="fa fa-shopping-cart"
-                    aria-hidden="true"></i>
+            <a id="basketicon" href="basket.html" style="position: relative;color: black;" class="nav_link"><i
+                    class="fa fa-shopping-cart" aria-hidden="true"></i>
                 <p style="position: absolute;" id="qty_auto"></p>
             </a>
             <div class="nav_link" style="position: relative;">
@@ -126,7 +150,7 @@
         <div style="height: 100px;"></div>
         <div class="row">
             <div class="col-md-4" style="padding: .5rem .5rem;">
-                <div style="background-color: white;height: 200px;" class="d-flex justify-content-center">
+                <div style="background-color: white;height: 210px;" class="d-flex justify-content-center">
                     <div class="d-flex align-items-center">
                         <div class="img"
                             style="width: 140px;height: 140px;position: relative;overflow: hidden;border-radius: 50%;">
@@ -141,15 +165,31 @@
                 </div>
             </div>
             <div class="col-md-8" style="padding: .5rem .5rem;">
-                <div style="background-color: white;height: 200px;padding: .5rem 1rem;">
-                    <div style="font-weight: bold;">รายละเอียดผู้ใช้
-                        <hr>
+                <div style="background-color: white;height: 210px;padding: .5rem 1rem;">
+                    <div style="font-weight: bold;" class="d-flex justify-content-between">
+                        <span>รายละเอียดผู้ใช้</span>
+                        <span class="change" id="change" style="cursor: pointer;">แก้ไข</span>
+                        <span class="change" id="save" style="cursor: pointer;display: none;">บันทึก</span>
                     </div>
+                    <hr>
                     <div>
-                        <p style="font-size: 14px;font-weight: bold;">นวิน เวชสุวรรณ์</p>
-                        <p style="font-size: 14px;">0938905293</p>
-                        <textarea style="font-size: 14px;" row=2 cols="40"
-                            readonly>116/103 หมู่2 แขวงคู้ฝั่งเหนือ เขตหนองจอก กทม. 10530</textarea>
+                        <p id="name1" style="font-size: 14px;font-weight: bold;"></p>
+                        <p id="name2" style="font-size: 14px;font-weight: bold;display: none;">
+                            <input id="name3" type="text" style="font-size: 14px;font-weight: bold;">
+                        </p>
+                        <p id="phone1" style="font-size: 14px;"></p>
+                        <p id="phone2" style="font-size: 14px;display: none;">
+                            <input id="phone3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+                            " type="number" style="font-size: 14px;" maxlength="10">
+                        </p>
+                        <textarea id="address1" style="font-size: 14px;border-style: none;
+                        border-color: Transparent;
+                        overflow: auto;
+                        resize: none;
+                        outline: none;" row=2 cols="40"
+                            readonly></textarea>
+                        <textarea id="address2" style="font-size: 14px;resize: none;display: none;padding: .1rem .2rem;border: 1px solid #ccc;" row=2 cols="40"
+                            ></textarea>
                     </div>
 
                 </div>
@@ -174,6 +214,32 @@
         $(document).ready(function () {
             $('#Profile').click(function () {
                 $('#hoverDropdown').toggle(300);
+            });
+            $('#change').click(function () {
+                $('#change').hide();
+                $('#save').show(300);
+
+                $('#name1').hide();
+                $('#name2').show(300);
+
+                $('#phone1').hide();
+                $('#phone2').show(300);
+
+                $('#address1').hide();
+                $('#address2').show(300);
+            });
+            $('#save').click(function () {
+                $('#save').hide();
+                $('#change').show(300);
+
+                $('#name2').hide();
+                $('#name1').show(300);
+
+                $('#phone2').hide();
+                $('#phone1').show(300);
+
+                $('#address2').hide();
+                $('#address1').show(300);
             });
         });
     </script>

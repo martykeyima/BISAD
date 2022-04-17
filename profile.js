@@ -19,11 +19,59 @@ const file = document.getElementById('file')
 const profile = document.getElementById('profile')
 const comment = document.getElementById('comment')
 const send = document.getElementById('send')
+const save = document.getElementById('save')
+
+var idu = sessionStorage.getItem("idu");
+console.log('idu', idu);
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
+if (ida != 'admin') {
+    document.getElementById('approveid').style.display = 'none'
+}
 
 var lis1 = sessionStorage.getItem("lis1");
 // console.log('lis3', (lis3))
 lis1 = lis1.split(',');
 console.log('lis1', lis1)
+
+
+save.addEventListener('click', async (e) => {
+    const name1 = document.getElementById('name1').innerText
+    const phone1 = document.getElementById('phone1').innerText
+    const address1 = document.getElementById('address1').innerText
+
+    const name3 = document.getElementById('name3').value
+    const phone3 = document.getElementById('phone3').value
+    const address2 = document.getElementById('address2').value
+
+    if (name3 != name1 || phone1 != phone3 || address1 != address2) {
+        const washingtonRef = doc(db, "users", idu);
+        await updateDoc(washingtonRef, {
+            name: name3,
+            phone: phone3,
+            address: address2
+        })
+        location.reload();
+    }
+})
+
+function renderUsers(user) {
+    document.getElementById('name1').innerText = user.data().name
+    document.getElementById('name3').value = user.data().name
+
+    document.getElementById('phone1').innerText = user.data().phone
+    document.getElementById('phone3').value = user.data().phone
+
+    document.getElementById('address1').innerText = user.data().address
+    document.getElementById('address2').value = user.data().address
+
+    if (user.data().src != '') {
+        profile.src = user.data().src
+    }
+
+}
+
+
 
 const qty_auto = document.getElementById('qty_auto');
 if (lis1.length - 1 > 0) {
@@ -34,7 +82,7 @@ if (lis1.length - 1 > 0) {
 comment.addEventListener('keypress', async (e) => {
     if (e.key === 'Enter') {
         comment.value = ''
-      }
+    }
 })
 
 upload.addEventListener('click', async (e) => {
@@ -50,6 +98,11 @@ file.addEventListener('input', async (e) => {
         // const lll = reader.result;
         const src = reader.result
         profile.src = src
+
+        const washingtonRef = doc(db, "users", idu);
+        updateDoc(washingtonRef, {
+            src: src
+        })
         // slip.style.display = 'block'
 
     }
@@ -60,11 +113,19 @@ file.addEventListener('input', async (e) => {
     }
 })
 
-var ida = sessionStorage.getItem("ida");
-console.log('ida', ida);
-if (ida != 'admin') {
-    document.getElementById('approveid').style.display = 'none'
+
+// read
+try {
+    const users = collection(db, "users");
+    const q = query(users, where('idu', '==', idu));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc => {
+        renderUsers(doc);
+    })
+} catch (error) {
+    throw error
 }
+
 const out = document.getElementById('out')
 out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("idu");

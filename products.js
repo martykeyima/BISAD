@@ -155,7 +155,7 @@ function renderProduct(product) {
         console.log('lis1', lis1);
         qty_auto.innerText = `${lis1.length - 1}`
         qty_auto.style.display = 'block'
-        // sessionStorage.setItem("lis1", lis1);
+        sessionStorage.setItem("lis1", lis1);
 
         const washingtonRef = doc(db, "users", idu);
         await updateDoc(washingtonRef, {
