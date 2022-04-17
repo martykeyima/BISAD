@@ -19,11 +19,12 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="signup.js" type="module"></script>
     <title>Sing Up</title>
     <style>
@@ -88,6 +89,16 @@
             padding-left: 20px;
             padding-right: 20px;
         }
+
+        #used {
+            position: absolute;
+            padding: .5rem 1rem;
+            background-color: red;
+            color: white;
+            right: -210;
+            top: 35;
+            display: none;
+        }
     </style>
 </head>
 
@@ -95,10 +106,11 @@
     <div class="singup">
         <h1>IT SHOP <i class="fa fa-laptop" aria-hidden="true"></i></h1>
         <form id="signup">
-            <div class="form-group">
+            <div class="form-group" style="position: relative;">
                 <label for="user">ชื่อผู้ใช้</label>
                 <input type="text" class="form-control" id="user" name="username" aria-describedby="user"
-                    placeholder="User name" required>
+                    placeholder="User name" required autofocus>
+                <p id="used">username ถูกใช้แล้ว</p>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">รหัสผ่าน</label>

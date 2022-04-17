@@ -75,6 +75,7 @@ function renderProduct(product) {
 
 
     div.setAttribute("data-id", product.id);
+    col.setAttribute("id", product.id);
     dib.setAttribute("databody-id", product.id);
     h5.setAttribute('style', 'cursor: pointer;')
     h5.setAttribute('title', product.data().name)
@@ -153,8 +154,11 @@ function renderProduct(product) {
         let id = e.target.parentElement.getAttribute('databody-id');
         lis1.push(id);
         console.log('lis1', lis1);
-        qty_auto.innerText = `${lis1.length - 1}`
-        qty_auto.style.display = 'block'
+        // qty_auto.innerText = `${lis1.length - 1}`
+        $(qty_auto).hide(0, function() {
+            $(this).html(`${lis1.length - 1}`).show(200);
+        });
+        // qty_auto.style.display = 'block'
         sessionStorage.setItem("lis1", lis1);
 
         const washingtonRef = doc(db, "users", idu);
@@ -249,9 +253,15 @@ search.addEventListener('input', async (e) => {
     const txt = e.target.value.toLowerCase();
     for (let i = 0; i < title.length; i++) {
         if (title[i].innerText.toLowerCase().includes(txt)) {
-            col[i].style.display = 'block';
+            $(document).ready(function () {
+                $(col[i]).show(300);
+            });
+            // col[i].style.display = 'block';
         } else {
-            col[i].style.display = "none";
+            $(document).ready(function () {
+                $(col[i]).hide(300);
+            });
+            // col[i].style.display = "none";
         }
     }
 })
@@ -275,9 +285,15 @@ range.addEventListener('input', async (e) => {
         const num = price[i].innerText.replace('฿','')
         const com = num.replace(',','')
         if (parseInt(com) <= filprice) {
-            col[i].style.display = 'block';
+            $(document).ready(function () {
+                $(col[i]).show(300);
+            });
+            // col[i].style.display = 'block';
         } else {
-            col[i].style.display = 'none';
+            $(document).ready(function () {
+                $(col[i]).hide(300);
+            });
+            // col[i].style.display = 'none';
         }
     }
     

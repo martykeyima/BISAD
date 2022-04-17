@@ -78,8 +78,13 @@ function renderProduct(product, count) {
 
         card.setAttribute('data-id', product.id);
         cardbody.setAttribute('databody-id', product.id);
+        col1.setAttribute('data-id', product.id);
         card.setAttribute('style', 'width: 100rem;');
         src.setAttribute('src', product.data().src);
+        src.setAttribute('style', 'cursor:pointer;');
+        src.setAttribute('title', product.data().name);
+        h5.setAttribute('style', 'cursor:pointer;');
+        h5.setAttribute('title', product.data().name);
 
         row1.className = 'row';
         col1.className = 'col-4';
@@ -206,7 +211,10 @@ function renderProduct(product, count) {
                 console.log('ราคา', raka)
                 ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
                 sessionStorage.setItem("raka", raka);
-                qty_auto.innerText = `${lis1.length - 1}`
+                // qty_auto.innerText = `${lis1.length - 1}`
+                $(qty_auto).hide(0, function() {
+                    $(this).html(`${lis1.length - 1}`).show(200);
+                });
             }
 
             if (qty.value == 1) {
@@ -229,7 +237,10 @@ function renderProduct(product, count) {
             await updateDoc(washingtonRef, {
                 productlis: lis1
             })
-            qty_auto.innerText = `${lis1.length - 1}`
+            // qty_auto.innerText = `${lis1.length - 1}`
+            $(qty_auto).hide(0, function() {
+                $(this).html(`${lis1.length - 1}`).show(200);
+            });
 
             lisprice.push(parseInt(product.data().price))
             const raka = lisprice.reduce((a, b) => a + b, 0)
@@ -238,10 +249,20 @@ function renderProduct(product, count) {
             sessionStorage.setItem("raka", raka);
 
         });
-        // i1.addEventListener('click', async (e) =>{
-        //     const qty = document.getElementById(e.target.parentElement.getAttribute('data-id'))
-        //     console.log(qty)
-        // });
+
+        //img
+        src.addEventListener('click', async (e) => {
+            // console.log('commy')
+            // console.log(e.target.parentElement.getAttribute('data-id'))
+            sessionStorage.setItem("idp", e.target.parentElement.getAttribute('data-id'));
+            location.href = "detail.html";
+        })
+        h5.addEventListener('click', async (e) => {
+            // console.log('commy')
+            // console.log(e.target.parentElement.getAttribute('databody-id'))
+            sessionStorage.setItem("idp", e.target.parentElement.getAttribute('databody-id'));
+            location.href = "detail.html";
+        })
     }
 
 }

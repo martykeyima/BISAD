@@ -337,7 +337,8 @@
             <img src="img/logo.jpg" alt="LOGO" width="100vw"></a>
         </a>
         <nav>
-            <div class="nav_link"><a id="history" style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a></div>
+            <div class="nav_link"><a id="history" style="font-weight: bold;cursor: pointer;">ประวัติการสั่งซื้อ</a>
+            </div>
             <a id="basketicon" style="position: relative;" class="nav_link"><i class="fa fa-shopping-cart"
                     aria-hidden="true"></i>
                 <p style="position: absolute;" id="qty_auto"></p>
@@ -420,7 +421,10 @@
         function filterall() {
             const col = document.getElementsByClassName('col-4');
             for (let i = 0; i < col.length; i++) {
-                col[i].style.display = 'block';
+                // col[i].style.display = 'block';
+                $(document).ready(function () {
+                    $(col[i]).show(300);
+                });
             }
         }
 
@@ -433,9 +437,15 @@
 
             for (let i = 0; i < title.length; i++) {
                 if (title[i].innerText.toLowerCase().includes(txt)) {
-                    col[i].style.display = 'block';
+                    $(document).ready(function () {
+                        $(col[i]).show(300);
+                    });
+                    // col[i].style.display = 'block';
                 } else {
-                    col[i].style.display = "none";
+                    // col[i].style.display = "none";
+                    $(document).ready(function () {
+                        $(col[i]).hide();
+                    });
                 }
             }
         }

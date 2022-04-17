@@ -134,8 +134,13 @@ file.addEventListener('input', async (e) => {
         const src = reader.result
         console.log(src)
         slip.src = src
-        choose.style.display = 'none'
-        remove.style.display = 'block'
+        $(document).ready(function(){
+            $(slip).show(300);
+            $('#choose').hide();
+            $(remove).show();
+          });
+        // choose.style.display = 'none'
+        // remove.style.display = 'block'
         // slip.style.display = 'block'
 
     }
@@ -146,13 +151,13 @@ file.addEventListener('input', async (e) => {
     }
 
 
-    if (e.target.files.length > 0) {
-        var src = URL.createObjectURL(e.target.files[0]);
-        // preview.src = src;
-        slip.style.display = "block";
-    } else if (e.target.files.length == 0) {
-        slip.style.display = "none";
-    }
+    // if (e.target.files.length > 0) {
+    //     var src = URL.createObjectURL(e.target.files[0]);
+    //     // preview.src = src;
+    //     slip.style.display = "block";
+    // } else if (e.target.files.length == 0) {
+    //     slip.style.display = "none";
+    // }
 })
 
 //slip
@@ -160,8 +165,13 @@ choose.addEventListener('click', async (e) => {
     file.click()
 })
 remove.addEventListener('click', async (e) => {
-    choose.style.display = 'block'
-    remove.style.display = 'none'
+    // choose.style.display = 'block'
+    // remove.style.display = 'none'
+    $(document).ready(function(){
+        $(slip).hide(500);
+        $(choose).show();
+        $(remove).hide();
+    });
     slip.src = ''
 })
 

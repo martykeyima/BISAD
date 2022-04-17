@@ -95,15 +95,17 @@ function renderHistory(his) {
             img.className = 'detail'
             img.setAttribute('src', productsrc[i]);
             img.setAttribute('style', 'width:200px;');
+            img.setAttribute('title', productname[i]);
 
             const name = document.createElement('p');
             name.className = 'detail'
             name.setAttribute('style', 'margin-top: 40px;')
+            name.setAttribute('title', productname[i])
             name.innerText = productname[i];
 
             const price = document.createElement('p')
             price.setAttribute('style', 'margin-top: 40px;')
-            price.innerText = `รวม ฿${numberWithCommas(productprice[i])}`;
+            price.innerText = `เครื่องละ ฿${numberWithCommas(productprice[i])}`;
 
             const qty = document.createElement('p');
             qty.setAttribute('style', 'margin-top: 40px;')
@@ -153,6 +155,7 @@ function renderHistory(his) {
         const status1 = document.createElement('p');
         status1.className = 'wait2'
         status1.innerText = 'กำลังตรวจสอบสลิปโอนเงิน'
+        status1.setAttribute('style','font-weight:bold')
         row1.appendChild(status1)
     } else if (his.data().status == 'ผ่าน') {
         const div1 = document.createElement('div');
@@ -160,7 +163,8 @@ function renderHistory(his) {
         const status2 = document.createElement('p');
         status1.innerText = `ขนส่งโดย: ${his.data().logis}`
         status2.innerText = `รหัสขนส่ง: ${his.data().logisv}`
-        status2.setAttribute('style', 'width: 250px;')
+        status2.setAttribute('style', 'width: 250px;font-weight:bold')
+        status1.setAttribute('style', 'font-weight:bold')
         div1.appendChild(status1)
         div1.appendChild(status2)
         div1.className = 'statusdiv'
@@ -170,6 +174,8 @@ function renderHistory(his) {
         const status1 = document.createElement('p');
         const status2 = document.createElement('p');
         status1.innerText = `ไม่ผ่านการอนุมัติ`
+        status1.setAttribute('style','color:red;font-weight:bold;')
+        status2.setAttribute('style','color:red;')
         status2.innerText = `${his.data().approvev}`
         div1.appendChild(status1)
         div1.appendChild(status2)
