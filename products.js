@@ -316,5 +316,5 @@ out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("idu");
     sessionStorage.removeItem("ida");
     sessionStorage.removeItem("lis2");
-    window.location.href = "signin.html";
+    window.location.href = "index.html";
 })
