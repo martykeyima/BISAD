@@ -3,14 +3,23 @@ import { getFirestore, collection, query, getDocs, doc, setDoc, addDoc, deleteDo
 
 
 // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCScLWvi_oEc0LXcPP2tpLRCgcd2W4TI6Q",
+//     authDomain: "commy-testing.firebaseapp.com",
+//     projectId: "commy-testing",
+//     storageBucket: "commy-testing.appspot.com",
+//     messagingSenderId: "713532664743",
+//     appId: "1:713532664743:web:9f7257c869c2b506a0a482"
+// };
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCScLWvi_oEc0LXcPP2tpLRCgcd2W4TI6Q",
-    authDomain: "commy-testing.firebaseapp.com",
-    projectId: "commy-testing",
-    storageBucket: "commy-testing.appspot.com",
-    messagingSenderId: "713532664743",
-    appId: "1:713532664743:web:9f7257c869c2b506a0a482"
-};
+    apiKey: "AIzaSyBgkznuHS2cSaFeozSM3bmX44IcOw0QgR4",
+    authDomain: "bisad8-near.firebaseapp.com",
+    projectId: "bisad8-near",
+    storageBucket: "bisad8-near.appspot.com",
+    messagingSenderId: "271459657548",
+    appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
+  };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
