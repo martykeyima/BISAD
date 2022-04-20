@@ -28,6 +28,9 @@ console.log('ida', ida);
 
 if (ida != 'admin') {
     document.getElementById('approveid').style.display = 'none'
+} else {
+    document.getElementById('history').style.display = 'none'
+    document.getElementById('basketicon').style.display = 'none'
 }
 
 const pdiv = document.getElementById("row");
@@ -106,7 +109,7 @@ function renderProduct(product) {
     // const x = numberWithCommas(product.data().price);
     span.innerText = `฿${numberWithCommas(product.data().price)}`;
     buy.innerText = "buy";
-    basket.innerText = "basket";
+    basket.innerText = "cart";
 
     // div.setAttribute("style", "width: 100% height: 29rem;");
     img.setAttribute("src", product.data().src);
@@ -222,6 +225,8 @@ function renderProduct(product) {
     //if admin
     if (ida == 'admin'){
         console.log('welcome admin')
+        buy.style.display = 'none'
+        basket.style.display = 'none'
     } else {
         del.setAttribute('style', 'display:none;');
         i.setAttribute('style', 'display:none;');
