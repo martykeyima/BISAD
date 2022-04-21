@@ -26,8 +26,8 @@ const db = getFirestore(app);
 const upload = document.getElementById('upload')
 const file = document.getElementById('file')
 const profile = document.getElementById('profile')
-const comment = document.getElementById('comment')
-const send = document.getElementById('send')
+// const comment = document.getElementById('comment')
+// const send = document.getElementById('send')
 const save = document.getElementById('save')
 
 var idu = sessionStorage.getItem("idu");
@@ -87,12 +87,6 @@ if (lis1.length - 1 > 0) {
     qty_auto.innerText = `${lis1.length - 1}`
     qty_auto.style.display = 'block'
 }
-
-comment.addEventListener('keypress', async (e) => {
-    if (e.key === 'Enter') {
-        comment.value = ''
-    }
-})
 
 upload.addEventListener('click', async (e) => {
     file.click()
