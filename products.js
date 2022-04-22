@@ -31,6 +31,7 @@ if (ida != 'admin') {
 } else {
     document.getElementById('history').style.display = 'none'
     document.getElementById('basketicon').style.display = 'none'
+    document.querySelector(".menu").style.display = 'none'
 }
 
 const pdiv = document.getElementById("row");
@@ -227,6 +228,7 @@ function renderProduct(product) {
         console.log('welcome admin')
         buy.style.display = 'none'
         basket.style.display = 'none'
+        document.querySelector('footer').style.display = 'none'
     } else {
         del.setAttribute('style', 'display:none;');
         i.setAttribute('style', 'display:none;');

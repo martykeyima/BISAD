@@ -25,7 +25,7 @@ const db = getFirestore(app);
 
 const upload = document.getElementById('upload')
 const file = document.getElementById('file')
-const profile = document.getElementById('profile')
+const profile = document.getElementById('profile22')
 // const comment = document.getElementById('comment')
 // const send = document.getElementById('send')
 const save = document.getElementById('save')

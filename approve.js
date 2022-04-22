@@ -24,6 +24,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const ul = document.getElementById('ul');
 
+var ida = sessionStorage.getItem("ida");
+console.log('ida', ida);
+if (ida == 'admin') {
+    document.getElementById('history').style.display = 'none'
+    document.getElementById('basketicon').style.display = 'none'
+    document.querySelector(".menu").style.display = 'none'
+    // document.querySelector('footer').style.display = 'none'
+}
+
 //tranform number to number with comma
 function numberWithCommas(x) {
     x = x.toString();

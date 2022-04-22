@@ -46,6 +46,11 @@ var ida = sessionStorage.getItem("ida");
 console.log('ida', ida);
 if (ida != 'admin') {
     document.getElementById('approveid').style.display = 'none'
+} else {
+    document.getElementById('history').style.display = 'none'
+    document.getElementById('basketicon').style.display = 'none'
+    document.querySelector('footer').style.display = 'none'
+    document.querySelector(".menu").style.display = 'none'
 }
 
 var lis1 = sessionStorage.getItem("lis1");
