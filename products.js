@@ -17,7 +17,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -53,8 +53,9 @@ const users = collection(db, "users");
 const q = query(users, where('idu', '==', idu));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach(doc => {
+    document.getElementById('profile33').src = doc.data().src
     const lis2 = doc.data().productlis
-    console.log('lis2',lis2)
+    console.log('lis2', lis2)
     sessionStorage.setItem("lis2", lis2);
     // เมื่อชำระเงินแล้วอย่าลืมมารีเซ็ต
 
@@ -168,7 +169,7 @@ function renderProduct(product) {
         lis1.push(id);
         console.log('lis1', lis1);
         // qty_auto.innerText = `${lis1.length - 1}`
-        $(qty_auto).hide(0, function() {
+        $(qty_auto).hide(0, function () {
             $(this).html(`${lis1.length - 1}`).show(200);
         });
         // qty_auto.style.display = 'block'
@@ -224,7 +225,7 @@ function renderProduct(product) {
     })
 
     //if admin
-    if (ida == 'admin'){
+    if (ida == 'admin') {
         console.log('welcome admin')
         buy.style.display = 'none'
         basket.style.display = 'none'
@@ -284,22 +285,22 @@ search.addEventListener('input', async (e) => {
 
 // scale
 const
-  range = document.getElementById('range'),
-  rangeV = document.getElementById('rangeV'),
-  setValue = ()=>{
-    const
-      newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
-      newPosition = 10 - (newValue * 0.2);
-    rangeV.innerHTML = `<span>${numberWithCommas(range.value)}</span>`;
-    rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
-  };
+    range = document.getElementById('range'),
+    rangeV = document.getElementById('rangeV'),
+    setValue = () => {
+        const
+            newValue = Number((range.value - range.min) * 100 / (range.max - range.min)),
+            newPosition = 10 - (newValue * 0.2);
+        rangeV.innerHTML = `<span>${numberWithCommas(range.value)}</span>`;
+        rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+    };
 document.addEventListener("DOMContentLoaded", setValue);
 range.addEventListener('input', setValue);
 range.addEventListener('input', async (e) => {
     const filprice = parseInt(e.target.value);
     for (let i = 0; i < title.length; i++) {
-        const num = price[i].innerText.replace('฿','')
-        const com = num.replace(',','')
+        const num = price[i].innerText.replace('฿', '')
+        const com = num.replace(',', '')
         if (parseInt(com) <= filprice) {
             $(document).ready(function () {
                 $(col[i]).show(300);
@@ -312,7 +313,7 @@ range.addEventListener('input', async (e) => {
             // col[i].style.display = 'none';
         }
     }
-    
+
 });
 
 const basketicon = document.getElementById('basketicon');
@@ -334,3 +335,5 @@ out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("lis2");
     window.location.href = "index.html";
 })
+
+

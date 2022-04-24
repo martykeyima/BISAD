@@ -19,7 +19,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -162,4 +162,14 @@ out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("lis1");
     sessionStorage.removeItem("lis2");
     window.location.href = "index.html";
+})
+
+// var srcprofile = sessionStorage.getItem("srcprofile");
+// document.getElementById('profile33').src= srcprofile
+
+const users = collection(db, "users");
+const q = query(users, where('idu', '==', idu));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach(doc => {
+    document.getElementById('profile33').src = doc.data().src
 })

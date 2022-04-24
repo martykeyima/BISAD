@@ -19,7 +19,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -221,7 +221,7 @@ function renderProduct(product, count) {
                 ppayment.innerText = `ยอดรวม ${numberWithCommas(raka)} บาท`
                 sessionStorage.setItem("raka", raka);
                 // qty_auto.innerText = `${lis1.length - 1}`
-                $(qty_auto).hide(0, function() {
+                $(qty_auto).hide(0, function () {
                     $(this).html(`${lis1.length - 1}`).show(200);
                 });
             }
@@ -247,7 +247,7 @@ function renderProduct(product, count) {
                 productlis: lis1
             })
             // qty_auto.innerText = `${lis1.length - 1}`
-            $(qty_auto).hide(0, function() {
+            $(qty_auto).hide(0, function () {
                 $(this).html(`${lis1.length - 1}`).show(200);
             });
 
@@ -303,4 +303,14 @@ out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("lis2");
     sessionStorage.removeItem("ida");
     window.location.href = "index.html";
+})
+
+// var srcprofile = sessionStorage.getItem("srcprofile");
+// document.getElementById('profile33').src= srcprofile
+
+const users = collection(db, "users");
+const q = query(users, where('idu', '==', idu));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach(doc => {
+    document.getElementById('profile33').src = doc.data().src
 })

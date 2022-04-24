@@ -223,6 +223,7 @@ function renderUser(user) {
     name.value = user.data().name
     phone.value = `${user.data().phone}`
     address.value = user.data().address
+    document.getElementById('profile33').src= user.data().src
 }
 
 

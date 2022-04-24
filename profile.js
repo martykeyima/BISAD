@@ -25,7 +25,7 @@ const db = getFirestore(app);
 
 const upload = document.getElementById('upload')
 const file = document.getElementById('file')
-const profile = document.getElementById('profile22')
+const profile22 = document.getElementById('profile22')
 // const comment = document.getElementById('comment')
 // const send = document.getElementById('send')
 const save = document.getElementById('save')
@@ -43,11 +43,13 @@ var lis1 = sessionStorage.getItem("lis1");
 lis1 = lis1.split(',');
 console.log('lis1', lis1)
 
+var profile33 = document.getElementById('profile33')
+
 
 save.addEventListener('click', async (e) => {
     const name1 = document.getElementById('name1').innerText
     const phone1 = document.getElementById('phone1').innerText
-    const address1 = document.getElementById('address1').innerText
+    const address1 = document.getElementById('address1').innerHTML
 
     const name3 = document.getElementById('name3').value
     const phone3 = document.getElementById('phone3').value
@@ -74,9 +76,8 @@ function renderUsers(user) {
     document.getElementById('address1').innerText = user.data().address
     document.getElementById('address2').value = user.data().address
 
-    if (user.data().src != '') {
-        profile.src = user.data().src
-    }
+    profile22.src = user.data().src
+    profile33.src = user.data().src
 
 }
 
@@ -100,7 +101,8 @@ file.addEventListener('input', async (e) => {
         // console.log(reader.result)
         // const lll = reader.result;
         const src = reader.result
-        profile.src = src
+        profile22.src = src
+        profile33.src = src
 
         const washingtonRef = doc(db, "users", idu);
         updateDoc(washingtonRef, {

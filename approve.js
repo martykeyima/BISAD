@@ -268,8 +268,13 @@ try {
 
 const out = document.getElementById('out')
 out.addEventListener('click', async (e) => {
-    sessionStorage.removeItem("idu");
+    // sessionStorage.removeItem("idu");
     sessionStorage.removeItem("ida");
     sessionStorage.removeItem("lis2");
     window.location.href = "index.html";
 })
+
+// read
+var srcprofile = sessionStorage.getItem("srcprofile");
+document.getElementById('profile33').src= srcprofile
+

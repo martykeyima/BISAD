@@ -19,7 +19,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -164,7 +164,7 @@ function renderHistory(his) {
         const status1 = document.createElement('p');
         status1.className = 'wait2'
         status1.innerText = 'กำลังตรวจสอบสลิปโอนเงิน'
-        status1.setAttribute('style','font-weight:bold')
+        status1.setAttribute('style', 'font-weight:bold')
         row1.appendChild(status1)
     } else if (his.data().status == 'ผ่าน') {
         const div1 = document.createElement('div');
@@ -183,8 +183,8 @@ function renderHistory(his) {
         const status1 = document.createElement('p');
         const status2 = document.createElement('p');
         status1.innerText = `ไม่ผ่านการอนุมัติ`
-        status1.setAttribute('style','color:red;font-weight:bold;')
-        status2.setAttribute('style','color:red;')
+        status1.setAttribute('style', 'color:red;font-weight:bold;')
+        status2.setAttribute('style', 'color:red;')
         status2.innerText = `${his.data().approvev}`
         div1.appendChild(status1)
         div1.appendChild(status2)
@@ -216,4 +216,12 @@ out.addEventListener('click', async (e) => {
     sessionStorage.removeItem("lis2");
     sessionStorage.removeItem("ida");
     window.location.href = "index.html";
+})
+
+
+const users = collection(db, "users");
+const q = query(users, where('idu', '==', idu));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach(doc => {
+    document.getElementById('profile33').src = doc.data().src
 })
