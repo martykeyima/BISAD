@@ -64,7 +64,7 @@ form.addEventListener('submit', async (e) => {
             address: form.address.value,
             phone: form.phone.value,
             ida: '',
-            src: 'https://www.w3schools.com/w3images/avatar2.png'
+            src: 'https://www.w3schools.com/howto/img_avatar.png'
         })
 
         //read for set id

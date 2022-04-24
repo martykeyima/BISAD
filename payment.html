@@ -168,15 +168,17 @@
                 <div class="address" style="background-color: white; position: relative;">
                     <div class="top-address d-flex justify-content-between"
                         style="padding: .5rem .5rem; background-color: #258b23;color: white;">
-                        <span>ที่อยู่</span>
+                        <span>รายละเอียดของคุณ</span>
                         <span id="edit" style="cursor: pointer;">แก้ไข</span>
                         <span id="save" style="cursor: pointer;display: none;">บันทึก</span>
                     </div>
                     <div class="address-detail" style="padding: .5rem .5rem;">
-                        <p>&ensp;ชื่อ <input type="text" id="name" readonly>&emsp;เบอร์ <input
+                        <p><span style="margin-left: 5px;margin-right: 5px;">ชื่อ</span><input type="text" id="name" readonly>&emsp;เบอร์ <input
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type="number" maxlength="10" id="phone" readonly></p>
-                        <p><textarea name="" id="address" style="width: 100%;" rows="2" readonly></textarea></p>
+                        <p>
+                            <span style="margin-left: 5px;">ที่อยู่</span>
+                            <textarea name="" id="address" style="width: 100%;" rows="2" readonly></textarea></p>
                     </div>
                     <!-- <div class="d-flex justify-content-end" style="margin-right: 10px;">
                         <p id="save">save</p>
