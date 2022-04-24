@@ -28,6 +28,18 @@
     <script src="signup.js" type="module"></script>
     <title>Sing Up</title>
     <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
         body {
             width: 100%;
             /* height: 800px; */
@@ -37,7 +49,8 @@
             /* font-family: 'Kanit', sans-serif; */
         }
 
-        input[type=text] {
+        input[type=text],
+        input[type='number'] {
             border-radius: 20px;
         }
 
@@ -124,7 +137,10 @@
             </div>
             <div class="form-group">
                 <label for="phone">เบอร์โทรศัพท์</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                <input
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type="number" maxlength="10" class="form-control" id="phone" name="phone" placeholder="Phone"
+                    required>
             </div>
             <div class="form-group">
                 <label for="address">ที่อยู่</label>
