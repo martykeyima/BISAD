@@ -51,6 +51,10 @@ if (ida != 'admin') {
     document.getElementById('basketicon').style.display = 'none'
     document.querySelector('footer').style.display = 'none'
     document.querySelector(".menu").style.display = 'none'
+    document.querySelector(".inpqty").style.display = 'none'
+    document.querySelector(".inpqty1").style.display = 'none'
+    buy.style.display = 'none'
+    cart.style.display = 'none'
 }
 
 var lis1 = sessionStorage.getItem("lis1");
