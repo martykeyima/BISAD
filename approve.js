@@ -18,7 +18,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -26,6 +26,8 @@ const ul = document.getElementById('ul');
 
 var ida = sessionStorage.getItem("ida");
 console.log('ida', ida);
+var idu = sessionStorage.getItem("idu");
+console.log('idu', idu);
 if (ida == 'admin') {
     document.getElementById('history').style.display = 'none'
     document.getElementById('basketicon').style.display = 'none'
@@ -131,7 +133,7 @@ function renderHistory(his) {
 
     const opa1 = document.createElement('option');
     opa1.innerText = 'รอการอนุมัติ';
-    opa1.setAttribute('value','wait')
+    opa1.setAttribute('value', 'wait')
     const opa2 = document.createElement('option');
     opa2.innerText = 'ผ่าน';
     const opa3 = document.createElement('option');
@@ -187,10 +189,10 @@ function renderHistory(his) {
 
         const washingtonRef = doc(db, "history", idh);
         await updateDoc(washingtonRef, {
-            logis : form.logis.value,
-            logisv : form.logisv.value,
-            status : form.approve.value,
-            approvev : form.approvev.value
+            logis: form.logis.value,
+            logisv: form.logisv.value,
+            status: form.approve.value,
+            approvev: form.approvev.value
         })
         location.reload();
     })
@@ -257,7 +259,7 @@ function renderHistory(his) {
 // read
 try {
     const history = collection(db, "history");
-    const q = query(history, where('status', '==', 'wait'),orderBy('milliseconds','desc'));
+    const q = query(history, where('status', '==', 'wait'), orderBy('milliseconds', 'desc'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
         renderHistory(doc);
@@ -275,6 +277,11 @@ out.addEventListener('click', async (e) => {
 })
 
 // read
-var srcprofile = sessionStorage.getItem("srcprofile");
-document.getElementById('profile33').src= srcprofile
 
+const users = collection(db, "users");
+const q = query(users, where('idu', '==', idu));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach(doc => {
+    // console.log('com')
+    document.getElementById('profile33').src = doc.data().src
+})
