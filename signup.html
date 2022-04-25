@@ -112,11 +112,24 @@
             top: 35;
             display: none;
         }
+
+        #back {
+            transition: 0.2s ease-in-out;
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            left: 25px;
+        }
+
+        #back:hover {
+            color: #ccc;
+        }
     </style>
 </head>
 
 <body>
     <div class="singup">
+        <a id="back" href="index.html"><i class="fas fa-caret-left"></i></a>
         <h1>JIBJIB<i class="fa fa-laptop" aria-hidden="true"></i></h1>
         <form id="signup">
             <div class="form-group" style="position: relative;">
