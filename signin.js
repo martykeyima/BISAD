@@ -68,9 +68,9 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         throw error
     }
-
     form.username.value = '';
     form.password.value = '';
+
     if (userlis.includes(username)) {
         console.log('มีนะคอม')
     } else {
