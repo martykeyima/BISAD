@@ -314,3 +314,13 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach(doc => {
     document.getElementById('profile33').src = doc.data().src
 })
+
+document.getElementById('btn1').addEventListener('click', async (e) => {
+    if (lis1.length == 1) {
+        alert('ซื้ออะไรก่อนสิ ท่านผู้เจริญ')
+        window.location.href='product.html'
+        document.getElementById('btn1').style.display = 'none'
+    } else {
+        window.location.href='payment.html'
+    }
+})
