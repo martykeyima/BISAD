@@ -17,7 +17,7 @@ const firebaseConfig = {
     storageBucket: "bisad8-near.appspot.com",
     messagingSenderId: "271459657548",
     appId: "1:271459657548:web:7bcc43c6e66f47610291e9"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -64,7 +64,8 @@ form.addEventListener('submit', async (e) => {
             address: form.address.value,
             phone: form.phone.value,
             ida: '',
-            src: 'https://www.w3schools.com/howto/img_avatar.png'
+            // src: 'https://www.w3schools.com/howto/img_avatar.png'
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJxKGGpPc9-5g25KWwnsCCy9O_dlS4HWo5A&usqp=CAU'
         })
 
         //read for set id
