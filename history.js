@@ -193,16 +193,17 @@ function renderHistory(his) {
     }
 
     parent.appendChild(row1)
+    return 1
 
 }
-
+let commy = 0
 // read
 try {
     const history = collection(db, "history");
     const q = query(history, where('idu', '==', idu), orderBy('milliseconds', 'desc'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(doc => {
-        renderHistory(doc);
+        commy = renderHistory(doc);
     })
 } catch (error) {
     throw error
@@ -225,3 +226,7 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach(doc => {
     document.getElementById('profile33').src = doc.data().src
 })
+
+if (commy == 0) {
+    console.log('commy')
+}
